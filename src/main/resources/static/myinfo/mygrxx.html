@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="utf-8" />
+		<title>个人信息</title>
+		<link rel="stylesheet" type="text/css" href="../css/public.css" />
+		<link rel="stylesheet" type="text/css" href="../css/mygrxx.css" />
+		<link rel="stylesheet" href="../js/layui-v2.2.5/css/layui.css" media="all">
+		<script src="../js/layui-v2.2.5/layui.js" charset="utf-8"></script>
+		<script src="../js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/public.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/user.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<!------------------------------head------------------------------>
+		<div class="head ding">
+			<div class="wrapper clearfix">
+				<div class="clearfix" id="top">
+					<h1 class="fl"><a href="../index.html"><img src="../images/logo.png"/></a></h1>
+					<div class="fr clearfix" id="top1">
+						<p class="fl">
+							<a href="../login.html" id="login">登录</a>
+							<a href="../reg.html" id="reg">注册</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!------------------------------idea------------------------------>
+		<div class="address mt">
+			<div class="wrapper clearfix">
+				<a href="index.html" class="fl">首页</a>
+				<span>/</span>
+				<a href="mygxin.html" class="on">个人信息</a>
+			</div>
+		</div>
+
+		<!------------------------------Bott------------------------------>
+		<div class="Bott">
+			<div class="wrapper clearfix">
+				<div class="zuo fl">
+					<h3>
+						<a href="#"><img src="../img/tx.png"/></a>
+						<p class="clearfix"><span class="fl">[黄琦]</span><span class="fr">[注销]</span></p>
+					</h3>
+					<div>
+						<h4>我的交易</h4>
+						<ul>
+							<li>
+								<a href="cart.html">我的购物车</a>
+							</li>
+							<li>
+								<a href="myorderq.html">我的订单</a>
+							</li>
+							<li>
+								<a href="myprod.html">评价晒单</a>
+							</li>
+						</ul>
+						<h4>个人中心</h4>
+						<ul>
+							<li>
+								<a href="mygxin.html">我的中心</a>
+							</li>
+							<li>
+								<a href="address.html">地址管理</a>
+							</li>
+						</ul>
+						<h4>账户管理</h4>
+						<ul>
+							<li class="on">
+								<a href="mygrxx.html">个人信息</a>
+							</li>
+							<li>
+								<a href="remima.html">修改密码</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="you fl">
+					<h2>个人信息</h2>
+					<div class="gxin">
+						<div class="tx">
+							<a href="#"><img src="../img/tx.png" />
+								<p id="avatar">修改头像</p>
+							</a>
+						</div>
+						<div class="xx">
+							<h3 class="clearfix"><strong class="fl">基础资料</strong><a href="#" class="fr" id="edit1">编辑</a></h3>
+							<div>昵称：黄琦</div>
+							<div>真实姓名：黄琦</div>
+							<div>出生年月：1995-06-06</div>
+							<div>性别：女</div>
+							<div>电话：62738432</div>
+							<div>邮箱：46532655@qq.com</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--遮罩-->
+		<div class="mask"></div>
+
+		<!--编辑弹框-->
+		<div class="bj layui-form">
+			<div class="clearfix">
+				<a href="#" class="fr gb"><img src="../images/icon4.png" /></a>
+			</div>
+			<h3>编辑基础资料</h3>
+			<div class="layui-form-item">
+				<label class="layui-form-label">昵称</label>
+				<div class="layui-input-block" style="width: 187px;">
+					<input type="text" name="username" lay-verify="required" value="六六六" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">真实姓名</label>
+				<div class="layui-input-block" style="width: 187px;">
+					<input type="text" name="title" lay-verify="title" autocomplete="off" value="黄琦" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">出生日期</label>
+				<div class="layui-input-inline">
+					<input type="text" name="date" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">性别</label>
+				<div class="layui-input-block">
+					<input type="radio" name="sex" value="男" title="男" checked="">
+					<input type="radio" name="sex" value="女" title="女">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">手机号码</label>
+					<div class="layui-input-inline">
+						<input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">邮箱</label>
+					<div class="layui-input-inline">
+						<input type="text" name="email" lay-verify="email" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+			</div>
+			<div class="bc">
+				<div class="layui-form-item">
+					<div class="layui-input-block">
+						<button class="layui-btn" lay-submit="" lay-filter="demo1">保存</button>
+						<button class="layui-btn" lay-submit="" lay-filter="demo1">取消</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		</div>
+
+		<!--修改头像  ——改为单独上传图片layui-->
+		<div class="avatar">
+			<div class="clearfix">
+				<a href="#" class="fr gb"><img src="../images/icon4.png" /></a>
+			</div>
+			<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+				<legend>更换头像</legend>
+			</fieldset>
+			<div class="layui-upload">
+				<button type="button" class="layui-btn" id="test1">上传图片</button>
+				<div class="layui-upload-list">
+					<img class="layui-upload-img" style="width: 128px;height: 128px;" id="demo1">
+					<p id="demoText" style="width: 128px;"></p>
+				</div>
+			</div>
+		</div>
+
+		<!--右下角导航栏返回顶部-->
+		<div class="gotop">
+			<a href="cart.html">
+				<dl>
+					<dt><img src="../images/gt1.png"/></dt>
+					<dd>去购<br />物车</dd>
+				</dl>
+			</a>
+			<a href="#" class="dh">
+				<dl>
+					<dt><img src="../images/gt2.png"/></dt>
+					<dd>联系<br />客服</dd>
+				</dl>
+			</a>
+			<a href="mygxin.html">
+				<dl>
+					<dt><img src="../images/gt3.png"/></dt>
+					<dd>个人<br />中心</dd>
+				</dl>
+			</a>
+			<a href="#" class="toptop" style="display: none">
+				<dl>
+					<dt><img src="../images/gt4.png"/></dt>
+					<dd>返回<br />顶部</dd>
+				</dl>
+			</a>
+			<p>400-800-8200</p>
+		</div>
+		<!--footer-->
+		<div class="footer">
+			<div style="margin-top: 30px;"></div>
+			<p class="dibu">科院书城&copy;2019公司版权所有<br /> 本网站所列数据，除特殊说明，所有数据均为测试数据
+			</p>
+		</div>
+	</body>
+	<script>
+		layui.use(['form', 'layedit', 'laydate'], function() {
+			var form = layui.form,
+				layer = layui.layer,
+				layedit = layui.layedit,
+				laydate = layui.laydate;
+			//日期
+			laydate.render({
+				elem: '#date'
+			});
+			laydate.render({
+				elem: '#date1'
+			});
+		});
+		layui.use('upload', function() {
+			var $ = layui.jquery;
+			var upload = layui.upload;
+			//普通图片上传
+			var uploadInst = upload.render({
+				elem: '#test1',
+				url: '/singlefile',
+				before: function(obj) {
+					//预读本地文件示例，不支持ie8
+					obj.preview(function(index, file, result) {
+						$('#demo1').attr('src', result); //图片链接（base64）
+					});
+				},
+				done: function(res) {
+					//如果上传失败
+					if(res.code > 0) {
+						return layer.msg('上传失败');
+					}
+					//上传成功
+				},
+				error: function() {
+					//演示失败状态，并实现重传
+					var demoText = $('#demoText');
+					demoText.html('<span style="color: #FF5722;">上传失败</span> <button class="layui-btn layui-btn-xs demo-reload" >重试</button>');
+					demoText.find('.demo-reload').on('click', function() {
+						uploadInst.upload();
+					});
+				}
+			});
+		});
+	</script>
+
+</html>
