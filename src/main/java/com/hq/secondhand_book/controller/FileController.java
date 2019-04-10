@@ -27,7 +27,7 @@ public class FileController {
             String suffixName = name.substring(name.lastIndexOf(".")+1);//获取后缀名
             String fileName = UUID.randomUUID()+"."+suffixName;
             //图片的存储位置
-            String filePath = "E://hq_gitresp//used_book//src//main//resources//static//img//";
+            String filePath = "E://hq_gitresp//used_book//src//main//resources//static//picture//";
             File dest = new File(filePath + fileName);
             if (!dest.getParentFile().exists()) {
                 dest.getParentFile().mkdirs();
