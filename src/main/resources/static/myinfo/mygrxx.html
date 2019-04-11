@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
 
 	<head lang="en">
 		<meta charset="utf-8" />
@@ -9,11 +9,14 @@
 		<link rel="stylesheet" href="../js/layui-v2.2.5/css/layui.css" media="all">
 		<script src="../js/layui-v2.2.5/layui.js" charset="utf-8"></script>
 		<script src="../js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/jquery-3.3.1.min.js"></script>
 		<script src="../js/public.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/user.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 
 	<body>
+	<div id="app">
 		<!------------------------------head------------------------------>
 		<div class="head ding">
 			<div class="wrapper clearfix">
@@ -42,7 +45,7 @@
 			<div class="wrapper clearfix">
 				<div class="zuo fl">
 					<h3>
-						<a href="#"><img src="../img/tx.png"/></a>
+						<a href="#"><img src="../img/tx.png" id="touxiang" width="90px" height="90px"/></a>
 						<p class="clearfix"><span class="fl">[黄琦]</span><span class="fr">[注销]</span></p>
 					</h3>
 					<div>
@@ -82,28 +85,29 @@
 					<h2>个人信息</h2>
 					<div class="gxin">
 						<div class="tx">
-							<a href="#"><img src="../img/tx.png" />
+							<a href="#"><img src="" id="touxiang1" width="110px" height="110px"/>
 								<p id="avatar">修改头像</p>
 							</a>
 						</div>
 						<div class="xx">
 							<h3 class="clearfix"><strong class="fl">基础资料</strong><a href="#" class="fr" id="edit1">编辑</a></h3>
-							<div>昵称：黄琦</div>
-							<div>真实姓名：黄琦</div>
-							<div>出生年月：1995-06-06</div>
-							<div>性别：女</div>
-							<div>电话：62738432</div>
-							<div>邮箱：46532655@qq.com</div>
+							<div>昵称：<input v-model="datalist.userName" readonly/> </div>
+							<div>真实姓名：<input v-model="datalist.userRealName" readonly/></div>
+							<div>出生年月：<input v-model="datalist.userBirthday" readonly/></div>
+							<div>性别：<input v-model="datalist.userSex" readonly/></div>
+							<div>电话：<input v-model="datalist.userTel" readonly/></div>
+							<div>邮箱：<input v-model="datalist.userEmail" readonly/></div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 		<!--遮罩-->
 		<div class="mask"></div>
 
 		<!--编辑弹框-->
-		<div class="bj layui-form">
+		<div class="bj layui-form" id="edit">
 			<div class="clearfix">
 				<a href="#" class="fr gb"><img src="../images/icon4.png" /></a>
 			</div>
@@ -111,24 +115,24 @@
 			<div class="layui-form-item">
 				<label class="layui-form-label">昵称</label>
 				<div class="layui-input-block" style="width: 187px;">
-					<input type="text" name="username" lay-verify="required" value="六六六" autocomplete="off" class="layui-input">
+					<input type="text" name="username" lay-verify="required" v-model="edata.userName" value="六六六" autocomplete="off" class="layui-input" readonly>
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">真实姓名</label>
 				<div class="layui-input-block" style="width: 187px;">
-					<input type="text" name="title" lay-verify="title" autocomplete="off" value="黄琦" class="layui-input">
+					<input type="text" name="title" lay-verify="title" v-model="edata.userReaName" autocomplete="off" value="黄琦" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-inline">
 				<label class="layui-form-label">出生日期</label>
 				<div class="layui-input-inline">
-					<input type="text" name="date" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+					<input type="text" name="date" id="date" lay-verify="date" v-model="edata.userBirthday"  placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">性别</label>
-				<div class="layui-input-block">
+				<div class="layui-input-block" v-model="edata.userSex">
 					<input type="radio" name="sex" value="男" title="男" checked="">
 					<input type="radio" name="sex" value="女" title="女">
 				</div>
@@ -137,33 +141,31 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">手机号码</label>
 					<div class="layui-input-inline">
-						<input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+						<input type="tel" name="phone" v-model="edata.userTel" lay-verify="required|phone" autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">邮箱</label>
 					<div class="layui-input-inline">
-						<input type="text" name="email" lay-verify="email" autocomplete="off" class="layui-input">
+						<input type="text" name="email" v-model="edata.userEmail" lay-verify="email" autocomplete="off" class="layui-input">
 					</div>
 				</div>
 			</div>
 			<div class="bc">
 				<div class="layui-form-item">
 					<div class="layui-input-block">
-						<button class="layui-btn" lay-submit="" lay-filter="demo1">保存</button>
-						<button class="layui-btn" lay-submit="" lay-filter="demo1">取消</button>
+						<button class="layui-btn" v-on:click="editet()" lay-filter="demo1">保存</button>
+						<a href="mygrxx.html"><button class="layui-btn" >取消</button></a>
 					</div>
 				</div>
 			</div>
-
 		</div>
 
-		</div>
 
 		<!--修改头像  ——改为单独上传图片layui-->
 		<div class="avatar">
 			<div class="clearfix">
-				<a href="#" class="fr gb"><img src="../images/icon4.png" /></a>
+				<a href="mygrxx.html" class="fr gb"><img src="../images/icon4.png" /></a>
 			</div>
 			<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
 				<legend>更换头像</legend>
@@ -174,6 +176,7 @@
 					<img class="layui-upload-img" style="width: 128px;height: 128px;" id="demo1">
 					<p id="demoText" style="width: 128px;"></p>
 				</div>
+				<a href="mygrxx.html"><button class="layui-btn">关闭</button></a>
 			</div>
 		</div>
 
@@ -212,6 +215,7 @@
 			</p>
 		</div>
 	</body>
+	<!--修改头像-->
 	<script>
 		layui.use(['form', 'layedit', 'laydate'], function() {
 			var form = layui.form,
@@ -233,11 +237,15 @@
 			var uploadInst = upload.render({
 				elem: '#test1',
 				url: '/singlefile',
+				data:{
+				   userName :"张三"
+				},
 				before: function(obj) {
 					//预读本地文件示例，不支持ie8
 					obj.preview(function(index, file, result) {
 						$('#demo1').attr('src', result); //图片链接（base64）
 					});
+                    return layer.msg('上传成功');
 				},
 				done: function(res) {
 					//如果上传失败
@@ -258,4 +266,67 @@
 		});
 	</script>
 
+	<script>
+        layui.use(['layer','form'], function() {
+            var layer = layui.layer;
+            var form = layui.form;
+        });
+        $(function(){
+            $.ajax({
+                url:"../userinfo",
+                type:"post",
+                async: false,//使用同步的方式,true为异步方式
+                data:{
+                    userName:"张三"//localStorage.getItem("uname")
+                },
+                success:function(data){
+                    v.datalist = data.data;
+                    edit.edata = data.data;
+                    $("#touxiang").attr("src",data.data.userPic);
+                    $("#touxiang1").attr("src",data.data.userPic);
+                    console.log(data.data);
+                    console.log(data.data.userPic);
+                    console.log(edit.edata = data.data);
+                },
+                fail:function(){
+                    alert(error);
+                }
+            })
+        })
+        var v = new Vue({
+            el: "#app",
+            data: {
+                datalist: []
+            },
+            methods: {
+
+            }
+        });
+        var edit = new Vue({
+            	el:"edit",
+				data:{
+            	    edata:[]
+				},
+			methods: {
+                editet: function() {
+                    //把获取到的编号传到后台，把查到的数据展示到详情页的界面上
+                    $ajax({
+                        url : "../updateuser",
+                        type : "post",
+                        data : {
+                            userDto : this.edata,
+                        },
+                        success : function(data) {
+                            //只查到一条数据，但是存在集合里，所以取第一条
+                            console.log(data);
+
+                        },
+                        error : function(error) {
+                            alert(error);
+                        }
+                    });
+                },
+			}
+		});
+	</script>
 </html>

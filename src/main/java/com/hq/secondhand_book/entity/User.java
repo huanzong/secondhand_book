@@ -16,8 +16,17 @@ public class User {
     @Column(name = "user_name")
     private String userName;   //用户名
 
+    @Column(name = "user_real_name")
+    private String userRelName;   //用户真实姓名
+
+    @Column(name = "user_stuId")
+    private String userStuId;   //用户学号
+
     @Column(name = "user_sex")
     private String userSex;   //用户性别
+
+    @Column(name = "user_birthday")
+    private String userBirthday;   //用户出生年月年月
 
     @Column(name = "user_pwd")
     private String userPwd;   //用户密码
@@ -30,6 +39,9 @@ public class User {
 
     @Column(name = "user_role")
     private Integer userRole;   //用户角色
+
+    @Column(name = "user_pic")
+    private String userPic;   //用户头像
 
     @Column(name = "is_usable")
     private Integer usable;   //是否可用：0-否 1-是

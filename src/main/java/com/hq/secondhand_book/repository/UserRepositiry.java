@@ -4,6 +4,9 @@ import com.hq.secondhand_book.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Optional;
+
 /**
  * @auther xinye
  * @create 2019 04 03
@@ -14,5 +17,8 @@ public interface UserRepositiry extends JpaRepository<User,Integer>  {
 
     User getByUserName(String userName);
 
-    User getByUserNameAndUsable(String userName, Integer usable);
+    Optional<User> getByUserNameAndUsable(String userName, Integer usable);
+
+    List<User> findAll();
+
 }

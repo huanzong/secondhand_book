@@ -172,7 +172,10 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户编号',
   `user_name` varchar(30) NOT NULL COMMENT '用户名',
+  `user_stuId` varchar(13) DEFAULT NULL COMMENT '用户学号',
+  `user_real_name` varchar(30) DEFAULT NULL COMMENT '用户真实姓名',
   `user_sex` char(2) DEFAULT NULL COMMENT '用户性别',
+  `user_birthday` date DEFAULT NULL COMMENT '出生年月',
   `user_pwd` varchar(50) DEFAULT NULL COMMENT '密码',
   `user_tel` varchar(50) NOT NULL COMMENT '电话',
   `user_email` varchar(50) DEFAULT NULL COMMENT '邮箱',
@@ -186,7 +189,7 @@ CREATE TABLE `users` (
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`user_name`,`user_sex`,`user_pwd`,`user_tel`,`user_email`,`user_pic`,`user_role`,`is_usable`,`cst_create`,`cst_modify`) values (1,'张三','男','123456','13745682594','123456789@qq.com',NULL,0,1,'2019-04-08 20:30:57','2019-04-08 20:30:57'),(2,'李四','男','123456','14567895257','1562543587@qq.com',NULL,0,1,'2019-04-08 20:33:57','2019-04-08 20:33:57'),(3,'王五','男','123456','12345678925','4544578878@qq.com',NULL,0,1,'2019-04-08 20:33:57','2019-04-08 20:33:57'),(4,'柳柳','女','123456','18547569875','123542584@qq.com',NULL,0,1,'2019-04-08 20:33:57','2019-04-08 20:33:57'),(5,'test','女','test','13745682594','123456789@qq.com',NULL,0,1,'2019-04-08 20:35:24','2019-04-08 20:35:24');
+insert  into `users`(`id`,`user_name`,`user_stuId`,`user_real_name`,`user_sex`,`user_birthday`,`user_pwd`,`user_tel`,`user_email`,`user_pic`,`user_role`,`is_usable`,`cst_create`,`cst_modify`) values (1,'张三',NULL,NULL,'男',NULL,'123456','13745682594','123456789@qq.com',NULL,0,1,'2019-04-08 20:30:57','2019-04-08 20:30:57'),(2,'李四',NULL,NULL,'男',NULL,'123456','14567895257','1562543587@qq.com',NULL,0,1,'2019-04-08 20:33:57','2019-04-08 20:33:57'),(3,'王五',NULL,NULL,'男',NULL,'123456','12345678925','4544578878@qq.com',NULL,0,1,'2019-04-08 20:33:57','2019-04-08 20:33:57'),(4,'柳柳',NULL,NULL,'女',NULL,'123456','18547569875','123542584@qq.com',NULL,0,1,'2019-04-08 20:33:57','2019-04-08 20:33:57'),(5,'test',NULL,NULL,'女',NULL,'test','13745682594','123456789@qq.com',NULL,0,1,'2019-04-08 20:35:24','2019-04-08 20:35:24');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
