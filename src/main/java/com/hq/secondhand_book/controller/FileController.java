@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 
 /**
  * @auther xinye
@@ -31,9 +33,15 @@ public class FileController {
         return Response.ok();
     }
 
-    @GetMapping("/test")
-    public ResultResp test(){
-        UserInfoVo user = userService.getUser("张三");
-        return Response.ok(user);
+    //上传图书
+    @PostMapping("/morefile")
+    public ResultResp moreFile(@RequestParam(value = "file", required = false) MultipartFile[] files,String userName,String bookName,
+        String bookSynopsis, Double bookPrice,int bookCategoryId){
+        if(files.length == 0){
+            return Response.dataErr("未上传图片！");
+        }else{
+            fileService.moreFile(files, userName,bookName,bookSynopsis,bookPrice,bookCategoryId);
+            return Response.ok();
+        }
     }
 }

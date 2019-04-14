@@ -296,7 +296,7 @@
 			methods: {
                 editet: function() {
                     //把获取到的编号传到后台，把查到的数据展示到详情页的界面上
-                    $ajax({
+                    $.ajax({
                         url : "../updateuser",
                         type : "post",
                         data : {

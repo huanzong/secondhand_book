@@ -22,7 +22,7 @@ public class Book {
     private Integer userId;     //用户编号
 
     @Column(name = "book_category_id")
-    private String bookCategoryId;      //图书类别编号
+    private int bookCategoryId;      //图书类别编号
 
     @Column( name = "book_name")
     private String bookName;        //图书名

@@ -11,4 +11,6 @@ import java.util.List;
  */
 public interface BookRepository extends JpaRepository<Book,Integer> {
     List<Book> findAllByUsable(Integer usable);
+    Book findByUserIdAndBookNameAndBookSysnopsisAndBookPriceAndBookCategoryId(int userId,String bookName,String bookSysnopsis,Double bookPrice,int bookCategory);
+    List<Book> findByBookCategoryId(int bookCategoryId);
 }
