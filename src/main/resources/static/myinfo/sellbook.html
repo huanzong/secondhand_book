@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>发布书籍</title>
+		<link rel="stylesheet" href="../js/layui-v2.2.5/css/layui.css" media="all">
+		<link rel="stylesheet" type="text/css" href="../css/public.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/mygxin.css" />
+		<script src="../js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/public.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/user.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/layui-v2.2.5/layui.js" charset="utf-8"></script>
+		<script src="../js/jquery-3.3.1.min.js"></script>
+	</head>
+
+	<body>
+		<div class="head">
+			<div class="wrapper clearfix">
+				<div class="clearfix" id="top">
+					<h1 class="fl"><a href="index.html"><img src="../images/logo.png"/></a></h1>
+					<div class="fr clearfix" id="top1">
+						<p class="fl">
+							<a href="#" id="login">登录</a>
+							<a href="#" id="reg">注册</a>
+						</p>
+						<form action="#" method="get" class="fl">
+							<input type="text" placeholder="搜索" />
+							<input type="button" />
+						</form>
+						<div class="btn fl clearfix">
+							<a href="mygxin.html"><img src="../images/grzx.png"/></a>
+							<a href="start.html"><img src="../images/collection.png"/></a>
+						</div>
+					</div>
+				</div>
+				<ul class="clearfix" id="bott">
+					<li><a href="index.html">首页</a></li>
+					<li>
+						<a href="#">所有商品</a>
+						<div class="sList">
+							<div class="wrapper  clearfix">
+								<a href="paint.html">
+									<dl>
+										<dt><img src="img/nav1.jpg"/></dt>
+										<dd>浓情欧式</dd>
+									</dl>
+								</a>
+								<a href="paint.html">
+									<dl>
+										<dt><img src="img/nav2.jpg"/></dt>
+										<dd>浪漫美式</dd>
+									</dl>
+								</a>
+								<a href="paint.html">
+									<dl>
+										<dt><img src="img/nav3.jpg"/></dt>
+										<dd>雅致中式</dd>
+									</dl>
+								</a>
+								<a href="paint.html">
+									<dl>
+										<dt><img src="img/nav6.jpg"/></dt>
+										<dd>简约现代</dd>
+									</dl>
+								</a>
+								<a href="paint.html">
+									<dl>
+										<dt><img src="img/nav7.jpg"/></dt>
+										<dd>创意装饰</dd>
+									</dl>
+								</a>
+							</div>
+						</div>
+					</li>
+					<li>
+						<a href="flowerDer.html">装饰摆件</a>
+						<div class="sList2">
+							<div class="clearfix">
+								<a href="proList.html">干花花艺</a>
+								<a href="vase_proList.html">花瓶花器</a>
+							</div>
+						</div>
+					</li>
+					<li>
+						<a href="decoration.html">布艺软饰</a>
+						<div class="sList2">
+							<div class="clearfix">
+								<a href="zbproList.html">桌布罩件</a>
+								<a href="bzproList.html">抱枕靠垫</a>
+							</div>
+						</div>
+					</li>
+					<li><a href="paint.html">墙式壁挂</a></li>
+					<li><a href="perfume.html">蜡艺香薰</a></li>
+					<li><a href="idea.html">创意家居</a></li>
+				</ul>
+			</div>
+		</div>
+		<div style="width: 50%; margin: auto;">
+			<fieldset class="layui-elem-field" style="margin-top: 40px;">
+				<legend  >发布图书</legend>
+				<div class="layui-form-item" style="margin-top: 40px;">
+					<label class="layui-form-label">标题：</label>
+					<div class="layui-input-block" style="width: 80%;">
+						<input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="标题 种类书名都是买家喜欢搜索的" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item layui-form-text" style="margin-top: 20px;">
+					<label class="layui-form-label" style="margin: auto;">简介:</label>
+					<div class="layui-input-block" style="width: 80%;">
+						<textarea placeholder="描述图书转手原因，破损程度等" class="layui-textarea"></textarea>
+					</div>
+				</div>
+				<div class="layui-form-item" style="margin-top: 20px;">
+					<label class="layui-form-label">价格：</label>
+					<div class="layui-input-block" style="width: 80%;">
+						<input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="图书价格" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item layui-form" style="margin-top: 20px;">
+					<label class="layui-form-label">类别：</label>
+					<div class="layui-input-inline">
+						<select name="interest" lay-filter="bumen">
+							<option value="">请选择类别</option>
+							<option value="0">全部</option>
+							<option value="010">人事部</option>
+							<option value="021">财务部</option>
+							<option value="0571">行政部</option>
+						</select>
+					</div>
+				</div>
+				<div class="layui-form-item layui-form" style="margin-top: 20px;">
+					<label class="layui-form-label">上传图片：</label>
+					<div class="layui-input-block" style="width: 80%;">
+						<div class="layui-upload">
+							<button type="button" class="layui-btn layui-btn-normal" id="testList">选择图片</button>
+							<div class="layui-upload-list">
+								<table class="layui-table">
+									<thead>
+										<tr>
+											<th>图片</th>
+											<th>大小</th>
+											<th>状态</th>
+											<th>操作</th>
+										</tr>
+									</thead>
+									<tbody id="demoList"></tbody>
+								</table>
+							</div>
+							<button type="button" class="layui-btn" id="testListAction">开始上传</button>
+						</div>
+					</div>
+					<div class="layui-form-item" style="margin-top: 20px;">
+					<div class="layui-input-block" style="width: 80%;margin-left: 250px;margin-bottom: 40px;">
+						<button class="layui-btn  layui-btn-danger" style="margin-right: 60px;">发布图书</button>		
+						<button class="layui-btn layui-btn-primary">取消发布</button>	
+					</div>
+				</div>
+				</div>
+			</fieldset>
+		</div>
+		<!--右下角导航栏返回顶部-->
+		<div class="gotop">
+			<a href="start.html">
+				<dl>
+					<dt><img src="../images/collection.png"/></dt>
+					<dd>我的<br />收藏</dd>
+				</dl>
+			</a>
+			<a href="#" class="dh">
+				<dl>
+					<dt><img src="../images/addbook.png"/></dt>
+					<dd>发布<br />图书</dd>
+				</dl>
+			</a>
+			<a href="mygxin.html">
+				<dl>
+					<dt><img src="../images/gt3.png"/></dt>
+					<dd>个人<br />中心</dd>
+				</dl>
+			</a>
+			<a href="#" class="toptop" style="display: none">
+				<dl>
+					<dt><img src="../images/gt4.png"/></dt>
+					<dd>返回<br />顶部</dd>
+				</dl>
+			</a>
+			
+		</div>
+		<!--footer-->
+		<div class="footer">
+			<div style="margin-top: 30px;"></div>
+			<p class="dibu">科院书城&copy;2019公司版权所有<br /> 本网站所列数据，除特殊说明，所有数据均为测试数据
+			</p>
+		</div>
+	</body>
+	<script>
+		layui.use(['form', 'layer'], function() {
+			var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+			var layer = layui.layer
+			//			form.render();
+		});
+		
+		layui.use('upload', function(){
+        var $ = layui.jquery;
+        var upload = layui.upload;
+        //多文件列表示例
+        var demoListView = $('#demoList')
+            ,uploadListIns = upload.render({
+            elem: '#testList'
+            ,url: '/uploadList'
+            ,accept: 'file'
+            ,multiple: true
+            ,auto: false
+            ,bindAction: '#testListAction'
+            ,choose: function(obj){
+                var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+                //读取本地文件
+                obj.preview(function(index, file, result){
+                    var tr = $(['<tr id="upload-'+ index +'">'
+                        ,'<td> <img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img" style="margin-right: 10px"> </td>'
+                        ,'<td>'+ (file.size/1014).toFixed(1) +'kb</td>'
+                        ,'<td>等待上传</td>'
+                        ,'<td>'
+                        ,'<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>'
+                        ,'<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
+                        ,'</td>'
+                        ,'</tr>'].join(''));
+
+                    //单个重传
+                    tr.find('.demo-reload').on('click', function(){
+                        obj.upload(index, file);
+                    });
+
+                    //删除
+                    tr.find('.demo-delete').on('click', function(){
+                        delete files[index]; //删除对应的文件
+                        tr.remove();
+                        uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+                    });
+                    demoListView.append(tr);
+                });
+            }
+            ,done: function(res, index, upload){
+                if(res.code == 0){ //上传成功
+                    var tr = demoListView.find('tr#upload-'+ index)
+                        ,tds = tr.children();
+                    tds.eq(2).html('<span style="color: #5FB878;">上传成功</span>');
+                    tds.eq(3).html(''); //清空操作
+                    return delete this.files[index]; //删除文件队列已经上传成功的文件
+                }
+                this.error(index, upload);
+            }
+            ,error: function(index, upload){
+                var tr = demoListView.find('tr#upload-'+ index)
+                    ,tds = tr.children();
+                tds.eq(2).html('<span style="color: #FF5722;">上传失败</span>');
+                tds.eq(3).find('.demo-reload').removeClass('layui-hide'); //显示重传
+            }
+        });
+
+    });
+	</script>
+
+</html>

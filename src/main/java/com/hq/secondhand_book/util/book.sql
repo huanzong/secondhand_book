@@ -184,12 +184,13 @@ CREATE TABLE `users` (
   `is_usable` tinyint(1) unsigned NOT NULL COMMENT '是否可用 0-否 1-是',
   `cst_create` datetime NOT NULL COMMENT '数据的创建时间',
   `cst_modify` datetime NOT NULL COMMENT '数据的修改时间',
+  `user_stu_id` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`user_name`,`user_stuId`,`user_real_name`,`user_sex`,`user_birthday`,`user_pwd`,`user_tel`,`user_email`,`user_pic`,`user_role`,`is_usable`,`cst_create`,`cst_modify`) values (1,'张三',NULL,NULL,'男',NULL,'123456','13745682594','123456789@qq.com',NULL,0,1,'2019-04-08 20:30:57','2019-04-08 20:30:57'),(2,'李四',NULL,NULL,'男',NULL,'123456','14567895257','1562543587@qq.com',NULL,0,1,'2019-04-08 20:33:57','2019-04-08 20:33:57'),(3,'王五',NULL,NULL,'男',NULL,'123456','12345678925','4544578878@qq.com',NULL,0,1,'2019-04-08 20:33:57','2019-04-08 20:33:57'),(4,'柳柳',NULL,NULL,'女',NULL,'123456','18547569875','123542584@qq.com',NULL,0,1,'2019-04-08 20:33:57','2019-04-08 20:33:57'),(5,'test',NULL,NULL,'女',NULL,'test','13745682594','123456789@qq.com',NULL,0,1,'2019-04-08 20:35:24','2019-04-08 20:35:24');
+insert  into `users`(`id`,`user_name`,`user_stuId`,`user_real_name`,`user_sex`,`user_birthday`,`user_pwd`,`user_tel`,`user_email`,`user_pic`,`user_role`,`is_usable`,`cst_create`,`cst_modify`,`user_stu_id`) values (1,'张三',NULL,NULL,'男',NULL,'123456','13745682594','123456789@qq.com','4dbf7604-3e67-4a67-bd09-38c46c88ae64.jpg',0,1,'2019-04-08 20:30:57','2019-04-08 20:30:57',NULL),(2,'李四',NULL,NULL,'男',NULL,'123456','14567895257','1562543587@qq.com','default.jpg',0,1,'2019-04-08 20:33:57','2019-04-08 20:33:57',NULL),(3,'王五',NULL,NULL,'男',NULL,'123456','12345678925','4544578878@qq.com','default.jpg',0,1,'2019-04-08 20:33:57','2019-04-08 20:33:57',NULL),(4,'柳柳',NULL,NULL,'女',NULL,'123456','18547569875','123542584@qq.com','default.jpg',0,1,'2019-04-08 20:33:57','2019-04-08 20:33:57',NULL),(5,'test',NULL,NULL,'女',NULL,'test','13745682594','123456789@qq.com','default.jpg',0,1,'2019-04-08 20:35:24','2019-04-08 20:35:24',NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
