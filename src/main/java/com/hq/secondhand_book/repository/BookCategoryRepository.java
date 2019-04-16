@@ -11,4 +11,6 @@ import java.util.List;
  */
 public interface BookCategoryRepository extends JpaRepository<BookCategory, Integer> {
     List<BookCategory> findByUsable(Integer usable);
+
+    BookCategory getByBookCategoryName(String categoryName);
 }

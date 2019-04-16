@@ -1,86 +1,86 @@
 package com.hq.secondhand_book.service.serviceimpl;
 
 import com.hq.secondhand_book.entity.Book;
-import com.hq.secondhand_book.entity.User;
+import com.hq.secondhand_book.entity.BookCategory;
+import com.hq.secondhand_book.repository.BookCategoryRepository;
 import com.hq.secondhand_book.repository.BookRepository;
-import com.hq.secondhand_book.repository.UserRepositiry;
 import com.hq.secondhand_book.service.BookService;
 import com.hq.secondhand_book.util.resp.Response;
 import com.hq.secondhand_book.util.resp.ResultResp;
+import com.hq.secondhand_book.vo.BookListVo;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import java.io.File;
-import java.io.IOException;
-import java.util.Date;
-import java.util.Optional;
-import java.util.UUID;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class BookServiceImpl implements BookService {
     @Resource
-    UserRepositiry userRepositiry;
-    @Resource
     BookRepository bookRepository;
+    @Resource
+    BookCategoryRepository bookCategoryRepository;
 
-    /**
-     * 上传图书
-     */
     @Override
-    public ResultResp moreFile(MultipartFile[] files, String userName,String bookName,
-                               String bookSynopsis, double bookPrice,int bookCategoryId) {
-        for(MultipartFile file : files){
-            try {
-                String name = file.getOriginalFilename();//上传文件的真实名称
-                String suffixName = name.substring(name.lastIndexOf(".")+1);//获取后缀名
-                String fileName = UUID.randomUUID()+"."+suffixName;
-                //图片的存储位置
-                String filePath = "E://Workspaces//secondhand_book//src//main//resources//static//picture//book//";
-                File dest = new File(filePath + fileName);
-                User user = userRepositiry.findByUserName(userName);
-                Book book;
-                if(user!=null){
-                    if(user.getUsable()==1){
-                        System.out.println(user);
-                        int userId = user.getId();
-                        book = bookRepository.findByUserIdAndBookNameAndBookSysnopsisAndBookPriceAndBookCategoryId(userId,
-                                bookName,bookSynopsis,bookPrice,bookCategoryId);
-                        if(book!=null){
-                            System.out.println(book);
-                            String pic = book.getBookPicture()+"#"+fileName;
-                            book.setBookPicture(pic);
-                            book.setCstModify(new Date());
-                            bookRepository.saveAndFlush(book);
-                        }else{
-                            book = new Book();
-                            book.setUserId(userId);
-                            book.setBookName(bookName);
-                            book.setBookPrice(bookPrice);
-                            book.setBookCategoryId(bookCategoryId);
-                            book.setBookSysnopsis(bookSynopsis);
-                            book.setBookPicture(fileName);
-                            book.setUsable(1);
-                            book.setCstCreate(new Date());
-                            book.setCstModify(new Date());
-                            bookRepository.save(book);
-                        }
-                    }
+    public ResultResp bookList(int page) {
+        List<BookListVo> bookListVos=new ArrayList<>();
 
-                }
-                if (!dest.getParentFile().exists()) {
-                    dest.getParentFile().mkdirs();
-                }
-                try {
-                    file.transferTo(dest);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                return Response.dataErr("上传失败");
+        if(page<1){
+            return Response.dataErr("页码数不能小于1");
+        }
+        Pageable pageable = PageRequest.of(page-1,12, Sort.Direction.DESC,"cstModify");
+        Page<Book> pager = bookRepository.findAllByUsable(1, pageable);
+
+        List<Book> list=pager.getContent();
+
+        if(!list.isEmpty()){
+            for(Book book:list){
+                BookListVo bookListVo=new BookListVo();
+                bookListVo.setBookName(book.getBookName());
+                String pic = "picture/book/"+ book.getBookPicture().split("#")[0];
+                bookListVo.setBookPicture(pic);
+                DecimalFormat df = new DecimalFormat("#.00");
+                bookListVo.setBookPrice(df.format(book.getBookPrice()));
+                bookListVo.setBookId(book.getId());
+                bookListVos.add(bookListVo);
+
             }
         }
-        return Response.ok("上传成功");
+        return Response.ok(bookListVos);
+    }
+
+    @Override
+    public ResultResp bookListByCategory(int page, String category) {
+        List<BookListVo> bookListVos=new ArrayList<>();
+
+        if(page<1){
+            return Response.dataErr("页码数不能小于1");
+        }
+        Pageable pageable = PageRequest.of(page-1,12, Sort.Direction.DESC,"cstModify");
+        BookCategory bookCategory = bookCategoryRepository.getByBookCategoryName(category);
+        if(bookCategory!=null){
+            int bookCategoryId = bookCategory.getId();
+            Page<Book> pager = bookRepository.findByBookCategoryIdAndUsable(bookCategoryId,1, pageable);
+            List<Book> list=pager.getContent();
+            if(!list.isEmpty()){
+                for(Book book:list){
+                    BookListVo bookListVo=new BookListVo();
+                    bookListVo.setBookName(book.getBookName());
+                    String pic = "picture/book/"+ book.getBookPicture().split("#")[0];
+                    bookListVo.setBookPicture(pic);
+                    DecimalFormat df = new DecimalFormat("#.00");
+                    bookListVo.setBookPrice(df.format(book.getBookPrice()));
+                    bookListVo.setBookId(book.getId());
+                    bookListVos.add(bookListVo);
+                }
+            }
+            return  Response.ok(bookListVos);
+        }
+        return Response.dataErr("找不到资源");
     }
 }

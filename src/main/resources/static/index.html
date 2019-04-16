@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml">
 
 <head lang="en">
 	<meta charset="utf-8" />
@@ -9,10 +9,9 @@
 	<script src="js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/nav.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/pro.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/cart.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/vue.min.js"></script>
+	<script src="js/jquery-3.3.1.min.js"></script>
 </head>
-
 <body>
 <!------------------------------head------------------------------>
 <div class="head">
@@ -35,72 +34,80 @@
 			</div>
 		</div>
 		<ul class="clearfix" id="bott">
+			<li><a href="index.html">首页</a></li>
 			<li>
-				<a href="index.html">首页</a>
-			</li>
-			<li>
-				<a href="#">所有商品</a>
-				<div class="sList">
-					<div class="wrapper  clearfix">
-						<a href="paint.html">
-							<dl>
-								<dt><img src="img/nav1.jpg"/></dt>
-								<dd>浓情欧式</dd>
-							</dl>
-						</a>
-						<a href="paint.html">
-							<dl>
-								<dt><img src="img/nav2.jpg"/></dt>
-								<dd>浪漫美式</dd>
-							</dl>
-						</a>
-						<a href="paint.html">
-							<dl>
-								<dt><img src="img/nav3.jpg"/></dt>
-								<dd>雅致中式</dd>
-							</dl>
-						</a>
-						<a href="paint.html">
-							<dl>
-								<dt><img src="img/nav6.jpg"/></dt>
-								<dd>简约现代</dd>
-							</dl>
-						</a>
-						<a href="paint.html">
-							<dl>
-								<dt><img src="img/nav7.jpg"/></dt>
-								<dd>创意装饰</dd>
-							</dl>
-						</a>
-					</div>
-				</div>
-			</li>
-			<li>
-				<a href="flowerDer.html">装饰摆件</a>
+				<a href="flowerDer.html">考试教育</a>
 				<div class="sList2">
 					<div class="clearfix">
-						<a href="proList.html">干花花艺</a>
-						<a href="vase_proList.html">花瓶花器</a>
+						<a href="../flowerDer.html">公务员考试</a>
+						<a href="../flowerDer.html">英语考试</a>
+						<a href="../flowerDer.html">考研</a>
+						<a href="../flowerDer.html">其他考试</a>
+						<a href="../flowerDer.html">职称考试</a>
+						<a href="../flowerDer.html">教辅书</a>
+						<a href="../flowerDer.html">工具书</a>
 					</div>
 				</div>
 			</li>
 			<li>
-				<a href="decoration.html">布艺软饰</a>
+				<a href="decoration.html">经济管理</a>
 				<div class="sList2">
 					<div class="clearfix">
-						<a href="zbproList.html">桌布罩件</a>
-						<a href="bzproList.html">抱枕靠垫</a>
+						<a href="../flowerDer.html">成功励志</a>
+						<a href="../flowerDer.html">管理</a>
+						<a href="../flowerDer.html">经济金融</a>
 					</div>
 				</div>
 			</li>
 			<li>
-				<a href="paint.html">墙式壁挂</a>
+				<a href="paint.html">文学艺术</a>
+				<div class="sList2">
+					<div class="clearfix">
+						<a href="../flowerDer.html">收藏鉴赏</a>
+						<a href="../flowerDer.html">艺术</a>
+						<a href="../flowerDer.html">文学小说</a>
+						<a href="../flowerDer.html">文化历史</a>
+					</div>
+				</div>
 			</li>
 			<li>
-				<a href="perfume.html">蜡艺香薰</a>
+				<a href="../flowerDer.html">人文社科</a>
+				<div class="sList2">
+					<div class="clearfix">
+						<a href="../flowerDer.html">新闻传播</a>
+						<a href="../flowerDer.html">心理</a>
+						<a href="../flowerDer.html">法律</a>
+						<a href="../flowerDer.html">自然科学</a>
+						<a href="../flowerDer.html">社会科学</a>
+						<a href="../flowerDer.html">政治军事</a>
+						<a href="../flowerDer.html">宗教哲学</a>
+						<a href="../flowerDer.html">语言学习</a>
+					</div>
+				</div>
 			</li>
 			<li>
-				<a href="idea.html">创意家居</a>
+				<a href="../flowerDer.html">科学技术</a>
+				<div class="sList2">
+					<div class="clearfix">
+						<a href="../flowerDer.html">汽车与交通运输</a>
+						<a href="../flowerDer.html">医学卫生</a>
+						<a href="../flowerDer.html">计算机与网络</a>
+						<a href="../flowerDer.html">科技工程</a>
+						<a href="../flowerDer.html">建筑</a>
+					</div>
+				</div>
+			</li>
+			<li>
+				<a href="../flowerDer.html">生活休闲</a>
+				<div class="sList2">
+					<div class="clearfix">
+						<a href="../flowerDer.html">生活时尚</a>
+						<a href="../flowerDer.html">家庭育儿</a>
+						<a href="../flowerDer.html">旅游地理</a>
+						<a href="../flowerDer.html">体育保健</a>
+						<a href="../flowerDer.html">少儿</a>
+					</div>
+				</div>
 			</li>
 		</ul>
 	</div>
@@ -134,191 +141,25 @@
     </div>
 </div>-->
 <!----------------proList------------------------->
+<div id="app">
+<!-------------------列表内容------------------->
 <ul class="proList wrapper clearfix">
-	<li>
-		<a href="proDetail.html">
+	<li v-for = "item,index in datalist" :id="item.bookId" @mouseenter="enter(item.bookId,$event)" @mouseleave="leave($event)">
+		<a href="myinfo/start.html">
 			<dl>
-				<dt><img src="img/temp/pro01.jpg"></dt>
-				<dd>【最家】跳舞兰仿真花干花</dd>
-				<dd>￥17.90</dd>
-			</dl>
-		</a>
-	</li>
-	<li>
-		<a href="proDetail.html">
-			<dl>
-				<dt><img src="img/temp/pro02.jpg"></dt>
-				<dd>【最家】跳舞兰仿真花干花</dd>
-				<dd>￥17.90</dd>
-			</dl>
-		</a>
-	</li>
-	<li>
-		<a href="proDetail.html">
-			<dl>
-				<dt><img src="img/temp/pro03.jpg"></dt>
-				<dd>【最家】跳舞兰仿真花干花</dd>
-				<dd>￥17.90</dd>
-			</dl>
-		</a>
-	</li>
-	<li>
-		<a href="proDetail.html">
-			<dl>
-				<dt><img src="img/temp/vase01.jpg"></dt>
-				<dd>【最家】创意现代简约白瓷干花花瓶摆件</dd>
-				<dd>￥17.90</dd>
-			</dl>
-		</a>
-	</li>
-	<li>
-		<a href="proDetail.html">
-			<dl>
-				<dt><img src="img/temp/vase02.jpg"></dt>
-				<dd>【最家】现代简约白色条纹干花花瓶摆件</dd>
-				<dd>￥17.90</dd>
-			</dl>
-		</a>
-	</li>
-	<li>
-		<a href="proDetail.html">
-			<dl>
-				<dt><img src="img/temp/vase05.jpg"></dt>
-				<dd>【最家】仿木纹漆金裂纹台面花瓶系列套装</dd>
-				<dd>￥17.90</dd>
-			</dl>
-		</a>
-	</li>
-	<li>
-		<a href="proDetail.html">
-			<dl>
-				<dt><img src="img/temp/vase06.jpg"></dt>
-				<dd>【最家】仿木竖条纹雅致台面花瓶</dd>
-				<dd>￥17.90</dd>
-			</dl>
-		</a>
-	</li>
-	<li>
-		<a href="proDetail.html">
-			<dl>
-				<dt><img src="img/temp/pro04.jpg"></dt>
-				<dd>【最家】跳舞兰仿真花干花</dd>
-				<dd>￥17.90</dd>
-			</dl>
-		</a>
-	</li>
-	<li>
-		<a href="proDetail.html">
-			<dl>
-				<dt><img src="img/temp/pro05.jpg"></dt>
-				<dd>【最家】跳舞兰仿真花干花</dd>
-				<dd>￥17.90</dd>
-			</dl>
-		</a>
-	</li>
-	<li>
-		<a href="proDetail.html">
-			<dl>
-				<dt><img src="img/temp/pro06.jpg"></dt>
-				<dd>【最家】跳舞兰仿真花干花</dd>
-				<dd>￥17.90</dd>
-			</dl>
-		</a>
-	</li>
-	<li>
-		<a href="proDetail.html">
-			<dl>
-				<dt><img src="img/temp/pro07.jpg"></dt>
-				<dd>【最家】跳舞兰仿真花干花</dd>
-				<dd>￥17.90</dd>
-			</dl>
-		</a>
-	</li>
-	<li>
-		<a href="proDetail.html">
-			<dl>
-				<dt><img src="img/temp/pro08.jpg"></dt>
-				<dd>【最家】跳舞兰仿真花干花</dd>
-				<dd>￥17.90</dd>
-			</dl>
-		</a>
-	</li>
-	<li>
-		<a href="proDetail.html">
-			<dl>
-				<dt><img src="img/temp/pro01.jpg"></dt>
-				<dd>【最家】跳舞兰仿真花干花</dd>
-				<dd>￥17.90</dd>
-			</dl>
-		</a>
-	</li>
-	<li>
-		<a href="proDetail.html">
-			<dl>
-				<dt><img src="img/temp/pro02.jpg"></dt>
-				<dd>【最家】跳舞兰仿真花干花</dd>
-				<dd>￥17.90</dd>
-			</dl>
-		</a>
-	</li>
-	<li>
-		<a href="proDetail.html">
-			<dl>
-				<dt><img src="img/temp/pro03.jpg"></dt>
-				<dd>【最家】跳舞兰仿真花干花</dd>
-				<dd>￥17.90</dd>
-			</dl>
-		</a>
-	</li>
-	<li>
-		<a href="proDetail.html">
-			<dl>
-				<dt><img src="img/temp/pro04.jpg"></dt>
-				<dd>【最家】跳舞兰仿真花干花</dd>
-				<dd>￥17.90</dd>
-			</dl>
-		</a>
-	</li>
-	<li>
-		<a href="proDetail.html">
-			<dl>
-				<dt><img src="img/temp/pro05.jpg"></dt>
-				<dd>【最家】跳舞兰仿真花干花</dd>
-				<dd>￥17.90</dd>
-			</dl>
-		</a>
-	</li>
-	<li>
-		<a href="proDetail.html">
-			<dl>
-				<dt><img src="img/temp/pro06.jpg"></dt>
-				<dd>【最家】跳舞兰仿真花干花</dd>
-				<dd>￥17.90</dd>
-			</dl>
-		</a>
-	</li>
-	<li>
-		<a href="proDetail.html">
-			<dl>
-				<dt><img src="img/temp/pro07.jpg"></dt>
-				<dd>【最家】跳舞兰仿真花干花</dd>
-				<dd>￥17.90</dd>
-			</dl>
-		</a>
-	</li>
-	<li>
-		<a href="proDetail.html">
-			<dl>
-				<dt><img src="img/temp/pro08.jpg"></dt>
-				<dd>【最家】跳舞兰仿真花干花</dd>
-				<dd>￥17.90</dd>
+				<dt><img :src="item.bookPicture"></dt>
+				<dd>{{item.bookName}}</dd>
+				<dd id="bookid" style="display: none">{{item.bookId}}</dd>
+				<dd>￥{{item.bookPrice}}</dd>
 			</dl>
 		</a>
 	</li>
 </ul>
+</div>
 <!----------------mask------------------->
 <div class="mask"></div>
 <!-------------------mask内容------------------->
+<!-------------------快速浏览框------------------->
 <div class="proDets">
 	<img class="off" src="img/temp/off.jpg" />
 	<div class="tit clearfix">
@@ -399,5 +240,64 @@
 	</p>
 </div>
 </body>
+<script>
+    $(function(){
+        $.ajax({
+            url:"booklist",
+            type:"get",
+            async: false,//使用同步的方式,true为异步方式
+            data:{
+                page:1//localStorage.getItem("uname")
+            },
+            success:function(data){
+                v.datalist = data.data;
+                console.log(data.data);
+            },
+            fail:function(){
+                alert(error);
+            }
+        })
+    })
+    var v = new Vue({
+        el: "#app",
+        data: {
+            datalist: []
+        },
+        methods: {
+            enter:function(index,event){
+                console.log(index);
+                var html="";
+                html = '<p class="quick" @click="looked()">快速浏览</p>';
+                var target = event.target;
+                localStorage.setItem("bookId",index);
+                $(target).css('border','1px solid #000').append(html);
+                $(".quick").on('click',function(){
+                    console.log("缓存："+localStorage.getItem("bookId"))
+                    $(".mask").show();
+                    $(".proDets").show();
+                });
+            },
+            leave:function(event){
+                var target = event.target;
+                $(target).find("p").remove();
+                $(target).css('border','1px solid #fff');
+            },
+            // looked:function(event){
+            //     console.log("缓存："+localStorage.getItem("bookId"))
+            //     $(".mask").show();
+            //     $(".proDets").show();
+            // },
+        }
+    });
+</script>
+<script src="js/pro.js" type="text/javascript" charset="utf-8"></script>
 
+<script>
+    //关闭按钮
+    $(".off").click(function(){
+        $(".mask").hide();
+        $(".proDets").hide();
+        $(".pleaseC").hide();
+    });
+</script>
 </html>

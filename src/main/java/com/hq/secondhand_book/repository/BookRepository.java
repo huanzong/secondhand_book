@@ -1,6 +1,8 @@
 package com.hq.secondhand_book.repository;
 
 import com.hq.secondhand_book.entity.Book;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -10,7 +12,9 @@ import java.util.List;
  * @create 2019 04 03
  */
 public interface BookRepository extends JpaRepository<Book,Integer> {
-    List<Book> findAllByUsable(Integer usable);
+    Page<Book> findAllByUsable(int usable, Pageable pageable);
+    //List<Book> findAllByUsable(Integer usable);
     Book findByUserIdAndBookNameAndBookSysnopsisAndBookPriceAndBookCategoryId(int userId,String bookName,String bookSysnopsis,Double bookPrice,int bookCategory);
-    List<Book> findByBookCategoryId(int bookCategoryId);
+
+    Page<Book> findByBookCategoryIdAndUsable(int categoryId,int usable, Pageable pageable);
 }

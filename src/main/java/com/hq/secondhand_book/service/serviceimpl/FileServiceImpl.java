@@ -25,7 +25,7 @@ public class FileServiceImpl implements FileService {
     BookRepository bookRepository;
 
     /**
-     * 单文件上传
+     * 编辑头像
      * @param file
      * @param userName
      * @return

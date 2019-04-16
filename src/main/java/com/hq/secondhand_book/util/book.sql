@@ -2,7 +2,8 @@
 SQLyog Ultimate v11.11 (64 bit)
 MySQL - 5.5.47 : Database - book
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -36,9 +37,12 @@ CREATE TABLE `book` (
   KEY `FK_book_book_category_id` (`book_category_id`),
   CONSTRAINT `FK_book_book_category_id` FOREIGN KEY (`book_category_id`) REFERENCES `book_category` (`id`),
   CONSTRAINT `FK_book_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 /*Data for the table `book` */
+
+insert  into `book`(`id`,`user_id`,`book_category_id`,`book_name`,`book_synopsis`,`book_picture`,`book_price`,`is_usable`,`cst_create`,`cst_modify`)
+values (1,1,38,'小王子手绘本','图书质量很不错，八成新，很适合小朋友看','1f166afa-32b1-4eb8-93ed-0766e5f9625d.PNG#a9c26b98-a68f-4109-b047-eafbd816ddcc.PNG#20870d97-ac99-42c7-8e6b-8f5cac93a827.PNG#61e2de53-1aca-4d6b-9ab3-1ff91faa38e0.PNG',20.30,1,'2019-04-15 12:07:16','2019-04-15 12:07:42'),(2,1,31,'java编程思想第四版','内容很实用，适合想要深入学习java的人使用，书本七成新','cde61e67-75d4-403d-8c85-42889dcee1eb.PNG#7eb46333-63b0-4612-bb62-11664f683dcf.PNG#17b72c4a-a6df-4b9c-9c98-4bd88862d4d1.PNG',50.88,1,'2019-04-15 12:13:17','2019-04-15 12:22:06'),(3,1,1,'中公国家教师资格证考试用书2019','九成新，不准备考了，试卷基本没做','52277f97-2a78-4138-b446-e00f3287ad32.PNG#a739d50e-2c49-45d7-8304-513968b8665d.PNG',60.32,1,'2019-04-15 12:25:03','2019-04-15 12:25:24'),(4,1,12,'概率论与数理统计教程书','书名:概率论与数理统计教程\n\n作者:茆诗松 等编著\n\n出版社：高等教育出版社\n\n出版日期：2004-07-01\n\nISBN：9787040143652\n\n字数：550000\n\n页码：459\n\n版次：1\n\n装帧：平装','24732f5f-3e6f-4547-b285-577de093c53b.jpg',30.40,1,'2019-04-16 13:37:19','2019-04-16 13:37:19'),(5,1,1,'中公2018教师资格证考试中学','正版书籍八成新笔记不多','7ed37c00-1b6d-4e1d-987a-d58ae2d9be68.jpg#b63b2f65-2523-4732-aa7b-04901be39428.jpg#231d781c-3def-43ec-81e3-c9ab9d2280b9.png',30.40,1,'2019-04-16 14:25:38','2019-04-16 14:25:58');
 
 /*Table structure for table `book_category` */
 
@@ -190,7 +194,7 @@ CREATE TABLE `users` (
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`user_name`,`user_stuId`,`user_real_name`,`user_sex`,`user_birthday`,`user_pwd`,`user_tel`,`user_email`,`user_pic`,`user_role`,`is_usable`,`cst_create`,`cst_modify`,`user_stu_id`) values (1,'张三',NULL,NULL,'男',NULL,'123456','13745682594','123456789@qq.com','4dbf7604-3e67-4a67-bd09-38c46c88ae64.jpg',0,1,'2019-04-08 20:30:57','2019-04-08 20:30:57',NULL),(2,'李四',NULL,NULL,'男',NULL,'123456','14567895257','1562543587@qq.com','default.jpg',0,1,'2019-04-08 20:33:57','2019-04-08 20:33:57',NULL),(3,'王五',NULL,NULL,'男',NULL,'123456','12345678925','4544578878@qq.com','default.jpg',0,1,'2019-04-08 20:33:57','2019-04-08 20:33:57',NULL),(4,'柳柳',NULL,NULL,'女',NULL,'123456','18547569875','123542584@qq.com','default.jpg',0,1,'2019-04-08 20:33:57','2019-04-08 20:33:57',NULL),(5,'test',NULL,NULL,'女',NULL,'test','13745682594','123456789@qq.com','default.jpg',0,1,'2019-04-08 20:35:24','2019-04-08 20:35:24',NULL);
+insert  into `users`(`id`,`user_name`,`user_stuId`,`user_real_name`,`user_sex`,`user_birthday`,`user_pwd`,`user_tel`,`user_email`,`user_pic`,`user_role`,`is_usable`,`cst_create`,`cst_modify`,`user_stu_id`) values (1,'张三','201504020101','李四','男','1996-06-11','123456','13745682594','123456789@qq.com','da4befcf-990b-42a8-a4e1-29c8956456f1.jpg',0,1,'2019-04-08 20:30:57','2019-04-08 20:30:57',NULL),(2,'李四',NULL,NULL,'男',NULL,'123456','14567895257','1562543587@qq.com','default.jpg',0,1,'2019-04-08 20:33:57','2019-04-08 20:33:57',NULL),(3,'王五',NULL,NULL,'男',NULL,'123456','12345678925','4544578878@qq.com','default.jpg',0,1,'2019-04-08 20:33:57','2019-04-08 20:33:57',NULL),(4,'柳柳',NULL,NULL,'女',NULL,'123456','18547569875','123542584@qq.com','default.jpg',0,1,'2019-04-08 20:33:57','2019-04-08 20:33:57',NULL),(5,'test',NULL,NULL,'女',NULL,'test','13745682594','123456789@qq.com','default.jpg',0,1,'2019-04-08 20:35:24','2019-04-08 20:35:24',NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
