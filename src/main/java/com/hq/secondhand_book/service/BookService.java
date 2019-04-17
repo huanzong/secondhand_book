@@ -6,7 +6,9 @@ import com.hq.secondhand_book.vo.BookListVo;
 import java.util.List;
 
 public interface BookService {
-    ResultResp bookList(int page);
+    ResultResp bookList(int page, int size);
 
     ResultResp bookListByCategory(int page,String category);
+
+    ResultResp getBookbyId(int bookId);
 }

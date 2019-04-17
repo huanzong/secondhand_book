@@ -27,13 +27,13 @@ public class BookServiceImpl implements BookService {
     BookCategoryRepository bookCategoryRepository;
 
     @Override
-    public ResultResp bookList(int page) {
+    public ResultResp bookList(int page, int size) {
         List<BookListVo> bookListVos=new ArrayList<>();
 
         if(page<1){
             return Response.dataErr("页码数不能小于1");
         }
-        Pageable pageable = PageRequest.of(page-1,12, Sort.Direction.DESC,"cstModify");
+        Pageable pageable = PageRequest.of(page-1,size, Sort.Direction.DESC,"cstModify");
         Page<Book> pager = bookRepository.findAllByUsable(1, pageable);
 
         List<Book> list=pager.getContent();
@@ -57,7 +57,6 @@ public class BookServiceImpl implements BookService {
     @Override
     public ResultResp bookListByCategory(int page, String category) {
         List<BookListVo> bookListVos=new ArrayList<>();
-
         if(page<1){
             return Response.dataErr("页码数不能小于1");
         }
@@ -82,5 +81,11 @@ public class BookServiceImpl implements BookService {
             return  Response.ok(bookListVos);
         }
         return Response.dataErr("找不到资源");
+    }
+
+    @Override
+    public ResultResp getBookbyId(int bookId) {
+
+        return null;
     }
 }

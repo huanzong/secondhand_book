@@ -14,8 +14,9 @@ public class BookController {
     BookService bookService;
 
     @GetMapping("/booklist")
-    public ResultResp bookList(@RequestParam int page){
-        return bookService.bookList(page);
+    public ResultResp bookList(@RequestParam(required = false, defaultValue = "1") int page,
+                               @RequestParam(required = false, defaultValue = "8") int size){
+        return bookService.bookList(page,size);
     }
 
     /**
@@ -26,4 +27,9 @@ public class BookController {
             @RequestParam String category){
         return bookService.bookListByCategory(page,category);
     }
+
+//    @GetMapping("/booklist/{bookId}")
+//    public ResultResp booListBycategory(@RequestParam int bookId){
+//        return bookService.bookListByCategory(page,category);
+//    }
 }

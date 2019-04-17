@@ -17,4 +17,6 @@ public interface BookRepository extends JpaRepository<Book,Integer> {
     Book findByUserIdAndBookNameAndBookSysnopsisAndBookPriceAndBookCategoryId(int userId,String bookName,String bookSysnopsis,Double bookPrice,int bookCategory);
 
     Page<Book> findByBookCategoryIdAndUsable(int categoryId,int usable, Pageable pageable);
+
+    Book findById(int id);
 }
