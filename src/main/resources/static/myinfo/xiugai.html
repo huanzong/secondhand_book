@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8" />
+    <title>我的收货地址</title>
+    <link rel="stylesheet" type="text/css" href="../css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/mygxin.css" />
+    <link rel="stylesheet" href="../js/layui-v2.2.5/css/layui.css" media="all">
+    <script src="../js/layui-v2.2.5/layui.js" charset="utf-8"></script>
+    <script src="../js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/public.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/user.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+<!------------------------------head------------------------------>
+<div class="head ding">
+    <div class="wrapper clearfix">
+        <div class="clearfix" id="top">
+            <h1 class="fl"><a href="index.html"><img src="../images/logo.png" style="margin-top: -20px;"/></a></h1>
+            <div class="fr clearfix" id="top1">
+                <p class="fl">
+                    <a href="login.html" id="login">登录</a>
+                    <a href="reg.html" id="reg">注册</a>
+                </p>
+                <form action="#" method="get" class="fl">
+                    <input type="text" placeholder="搜索" />
+                    <input type="button" />
+                </form>
+            </div>
+        </div>
+        <ul class="clearfix" id="bott">
+            <li><a href="index.html">首页</a></li>
+            <li>
+                <a href="flowerDer.html">考试教育</a>
+                <div class="sList2">
+                    <div class="clearfix">
+                        <a href="../flowerDer.html">公务员考试</a>
+                        <a href="../flowerDer.html">英语考试</a>
+                        <a href="../flowerDer.html">考研</a>
+                        <a href="../flowerDer.html">其他考试</a>
+                        <a href="../flowerDer.html">职称考试</a>
+                        <a href="../flowerDer.html">教辅书</a>
+                        <a href="../flowerDer.html">工具书</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a href="decoration.html">经济管理</a>
+                <div class="sList2">
+                    <div class="clearfix">
+                        <a href="../flowerDer.html">成功励志</a>
+                        <a href="../flowerDer.html">管理</a>
+                        <a href="../flowerDer.html">经济金融</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a href="paint.html">文学艺术</a>
+                <div class="sList2">
+                    <div class="clearfix">
+                        <a href="../flowerDer.html">收藏鉴赏</a>
+                        <a href="../flowerDer.html">艺术</a>
+                        <a href="../flowerDer.html">文学小说</a>
+                        <a href="../flowerDer.html">文化历史</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a href="../flowerDer.html">人文社科</a>
+                <div class="sList2">
+                    <div class="clearfix">
+                        <a href="../flowerDer.html">新闻传播</a>
+                        <a href="../flowerDer.html">心理</a>
+                        <a href="../flowerDer.html">法律</a>
+                        <a href="../flowerDer.html">自然科学</a>
+                        <a href="../flowerDer.html">社会科学</a>
+                        <a href="../flowerDer.html">政治军事</a>
+                        <a href="../flowerDer.html">宗教哲学</a>
+                        <a href="../flowerDer.html">语言学习</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a href="../flowerDer.html">科学技术</a>
+                <div class="sList2">
+                    <div class="clearfix">
+                        <a href="../flowerDer.html">汽车与交通运输</a>
+                        <a href="../flowerDer.html">医学卫生</a>
+                        <a href="../flowerDer.html">计算机与网络</a>
+                        <a href="../flowerDer.html">科技工程</a>
+                        <a href="../flowerDer.html">建筑</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a href="../flowerDer.html">生活休闲</a>
+                <div class="sList2">
+                    <div class="clearfix">
+                        <a href="../flowerDer.html">生活时尚</a>
+                        <a href="../flowerDer.html">家庭育儿</a>
+                        <a href="../flowerDer.html">旅游地理</a>
+                        <a href="../flowerDer.html">体育保健</a>
+                        <a href="../flowerDer.html">少儿</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!------------------------------idea------------------------------>
+<div class="address mt">
+    <div class="wrapper clearfix">
+        <a href="../index.html" class="fl">首页</a>
+        <span>/</span>
+        <a href="mygxin.html">个人中心</a>
+        <span>/</span>
+        <a href="address.html" class="on">地址管理</a>
+    </div>
+</div>
+
+<!------------------------------Bott------------------------------>
+<div class="Bott" id="app">
+    <div class="wrapper clearfix">
+        <div class="zuo fl">
+            <h3>
+                <a href="#"><img src="../images/tx.png" id="touxiang" width="90px" height="90px"/></a>
+                <p class="clearfix"><span class="fl">[黄琦]</span><span class="fr">[注销]</span></p>
+            </h3>
+            <div>
+                <h4>我的交易</h4>
+                <ul>
+                    <li><a href="start.html">我的收藏</a></li>
+                    <li><a href="myorderq.html">我的订单</a></li>
+                    <li><a href="mysell.html">我售出的</a></li>
+                </ul>
+                <h4>个人中心</h4>
+                <ul>
+                    <li><a href="mygxin.html">我的中心</a></li>
+                    <li><a href="address.html">地址管理</a></li>
+                    <li><a href="sellbook.html">发布书籍</a></li>
+                </ul>
+                <h4>账户管理</h4>
+                <ul>
+                    <li class="on"><a href="mygrxx.html">个人信息</a></li>
+                    <li><a href="remima.html">修改密码</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="you fl">
+            <h2>收货地址</h2>
+            <div class="add">
+                <div>
+                    <a href="#2" id="addxad" @click="addReceive()"><img src="../images/jia.png"/></a>
+                    <span>添加新地址</span>
+                </div>
+                <div id="dizhi">
+                    <p>六六六</p>
+                    <p>1573****666</p>
+                    <p>河北省 唐山市 路北区</p>
+                    <p>唐山市大学生公寓村（063000）</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--编辑弹框-->
+<div id="addREceive" style="display: none;">
+    <table class="layui-table layui-form" lay-skin="nob">
+        <tr>
+            <td>
+                <div class="layui-inline">
+                    <label class="layui-form-label">收货人</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" placeholder="收货人姓名"/>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="layui-inline">
+                    <label class="layui-form-label">收货人</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" placeholder="电话"/>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="layui-inline">
+                    <label class="layui-form-label">交易地点</label>
+                    <div class="layui-input-inline">
+                        <select name="modules" lay-verify="required" lay-search="">
+                            <option value="">直接选择或搜索选择</option>
+                            <option value="1">layer</option>
+                            <option value="2">form</option>
+                            <option value="3">layim</option>
+                            <option value="4">element</option>
+                        </select>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button class="layui-btn layui-btn-primary" @click="addsave()">添加</button>
+            </td>
+            <td>
+                <button class="layui-btn layui-btn-primary" @click="addgb1()">关闭</button>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<div class="readd">
+    <form action="#" method="get">
+        <input type="text"  class="on" value="六六六" />
+        <input type="text" value="157****0022" />
+        <div class="city">
+            <select name="">
+                <option value="省份/自治区">河北省</option>
+            </select>
+            <select>
+                <option value="城市/地区">唐山市</option>
+            </select>
+            <select>
+                <option value="区/县">路北区</option>
+            </select>
+            <select>
+                <option value="配送区域">火炬路</option>
+            </select>
+        </div>
+        <textarea name="" rows="" cols="" placeholder="详细地址">高新产业园</textarea>
+        <input type="text" placeholder="邮政编码" value="063000"/>
+        <div class="bc">
+            <input type="button" value="保存" />
+            <input type="button" value="取消" />
+        </div>
+    </form>
+</div>
+<!--右下角导航栏返回顶部-->
+<div class="gotop">
+    <a href="start.html">
+        <dl>
+            <dt><img src="../images/collection.png"/></dt>
+            <dd>我的<br />收藏</dd>
+        </dl>
+    </a>
+    <a href="sellbook.html" class="dh">
+        <dl>
+            <dt><img src="../images/addbook.png"/></dt>
+            <dd>发布<br />图书</dd>
+        </dl>
+    </a>
+    <a href="mygxin.html">
+        <dl>
+            <dt><img src="../images/gt3.png"/></dt>
+            <dd>个人<br />中心</dd>
+        </dl>
+    </a>
+    <a href="#" class="toptop" style="display: none">
+        <dl>
+            <dt><img src="../images/gt4.png"/></dt>
+            <dd>返回<br />顶部</dd>
+        </dl>
+    </a>
+</div>
+<!--footer-->
+<div class="footer">
+    <div style="margin-top: 30px;"></div>
+    <p class="dibu">科院书城&copy;2019公司版权所有<br /> 本网站所列数据，除特殊说明，所有数据均为测试数据
+    </p>
+</div>
+</body>
+<script>
+    layui.use(['form','layer'], function() {
+        var form = layui.form;
+        var layer = layui.layer;
+    });
+    $(function(){
+
+    })
+    var v = new Vue({
+        el: "#app",
+        data: {
+            datalist: [],
+            pages:1,
+            sumpages:2
+        },
+        methods: {
+            editkao: function(index) {
+                var aid = this.datalist[index].aid;
+                $ajax({
+                    url:"../selectAttendByaid.do",
+                    type:"post",
+                    data:{
+                        aid:aid
+                    },
+                    success:function(data){
+                        editkq1.editlist = data[0];
+                        layer.open({
+                            anim: 3,
+                            area: ['640px', '400px'],
+                            title: "编辑考勤信息",
+                            type: 1,
+                            content: $("#editkq")
+                        })
+                    },
+                    error:function(error){
+                        alert(error)
+                    }
+                })
+            },
+            addReceive: function() {
+                layer.open({
+                    anim: 5,
+                    area: ['640px', '350px'],
+                    title: "新增收货地址",
+                    type: 1,
+                    content: $("#addREceive")
+                })
+            },
+            del:function(index){
+                var aid = this.datalist[index].aid;
+                $ajax({
+                    url:"../delattend.do",
+                    type:"post",
+                    data:{
+                        aid:aid
+                    },
+                    success:function(data){
+                        window.location.reload();//刷新页面
+                    },
+                    error:function(error){
+                        alert(error);
+                    }
+                })
+            }
+        }
+    });
+    /* var editkq1 = new Vue({
+         el: "#editkq",
+         data:{
+             editlist:[]
+         },
+         methods:{
+             editsave:function(){
+                 $ajax({
+                     url:"../editattend.do",
+                     type:"post",
+                     data:{
+                         aid:editkq1.editlist.aid,
+                         eid:editkq1.editlist.eid,
+                         ename:editkq1.editlist.ename,
+                         latecount:editkq1.editlist.latecount,
+                         leavecount:editkq1.editlist.leavecount,
+                         chuchai:editkq1.editlist.chuchai,
+                         addwork:editkq1.editlist.addwork,
+                         nowtime:editkq1.editlist.nowtime
+                     },
+                     success:function(data){
+                         window.location.reload();//刷新页面
+                         layer.close(layer.index);//关闭最新打开的弹窗
+                     },
+                     error:function(error){
+                         alert(error)
+                     }
+                 })
+             },
+             editgb1:function(){
+                 layer.close(layer.index);//关闭最新打开的弹窗
+             }
+         }
+     });*/
+    var addkq1 = new Vue({
+        el:"#addREceive",
+        data: {// data: 是Vue对象中绑定的数据
+            addlist:[]
+        },
+        methods:{
+            showname:function(){
+                var eid = addkq1.addlist.eid;
+                $ajax({
+                    url:"../showempname.do",
+                    type:"post",
+                    data:{
+                        eid:eid
+                    },
+                    success:function(data){
+                        if(data==null){
+                            alert('没有指定员工信息');
+                        }else{
+                            addkq1.addlist.ename = data.ename;
+                        }
+                    },
+                    error:function(error){
+                        if(error==400){
+                            alert("请输入正确的员工号")
+                        }else{
+                            alert(error)
+                        }
+                    }
+                })
+            },
+            addsave:function(){
+                $ajax({
+                    url:"../addattend.do",
+                    type:"post",
+                    data:{
+                        eid:addkq1.addlist.eid,
+                        ename:addkq1.addlist.ename,
+                        latecount:addkq1.addlist.latecount,
+                        leavecount:addkq1.addlist.leavecount,
+                        chuchai:addkq1.addlist.chuchai,
+                        addwork:addkq1.addlist.addwork,
+                        nowtime:addkq1.addlist.nowtime
+                    },
+                    success:function(data){
+                        window.location.reload();//刷新页面
+                        layer.close(layer.index);//关闭最新打开的弹窗
+                    },
+                    error:function(error){
+                        alert(error)
+                    }
+                })
+            },
+            addgb1:function(){
+                layer.close(layer.index);//关闭最新打开的弹窗
+            }
+        }
+    });
+
+</script>
+</html>

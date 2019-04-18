@@ -12,6 +12,12 @@ public class BookController {
     @Autowired
     BookService bookService;
 
+    /**
+     * 图书列表
+     * @param pageIndex 页数
+     * @param pageSize 每页显示条数
+     * @return
+     */
     @GetMapping("/booklist")
     public ResultResp bookList(@RequestParam(required = false, defaultValue = "1") int pageIndex,
                                @RequestParam(required = false, defaultValue = "8") int pageSize){

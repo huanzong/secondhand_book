@@ -21,7 +21,7 @@ public class ReceivingAddress {
     private Integer userId;     //用户编号
 
     @Column(name = "receiver_name")
-    private Integer receiverName;       //收货人姓名
+    private String receiverName;       //收货人姓名
 
     @Column(name = "receiver_tel")
     private String receiverTel;     //收货人电话
