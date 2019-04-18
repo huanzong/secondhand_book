@@ -13,10 +13,10 @@ import java.util.List;
  */
 public interface BookRepository extends JpaRepository<Book,Integer> {
     Page<Book> findAllByUsable(int usable, Pageable pageable);
-    //List<Book> findAllByUsable(Integer usable);
+    List<Book> findAllByUsable(Integer usable);
     Book findByUserIdAndBookNameAndBookSysnopsisAndBookPriceAndBookCategoryId(int userId,String bookName,String bookSysnopsis,Double bookPrice,int bookCategory);
 
     Page<Book> findByBookCategoryIdAndUsable(int categoryId,int usable, Pageable pageable);
 
-    Book findById(int id);
+    Book findByIdAndUsable(int id,int usable);
 }

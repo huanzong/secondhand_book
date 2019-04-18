@@ -1,7 +1,6 @@
 package com.hq.secondhand_book.controller;
 
 import com.hq.secondhand_book.service.BookService;
-import com.hq.secondhand_book.util.resp.Response;
 import com.hq.secondhand_book.util.resp.ResultResp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +13,9 @@ public class BookController {
     BookService bookService;
 
     @GetMapping("/booklist")
-    public ResultResp bookList(@RequestParam(required = false, defaultValue = "1") int page,
-                               @RequestParam(required = false, defaultValue = "8") int size){
-        return bookService.bookList(page,size);
+    public ResultResp bookList(@RequestParam(required = false, defaultValue = "1") int pageIndex,
+                               @RequestParam(required = false, defaultValue = "8") int pageSize){
+        return bookService.bookList(pageIndex,pageSize);
     }
 
     /**
@@ -28,8 +27,13 @@ public class BookController {
         return bookService.bookListByCategory(page,category);
     }
 
-//    @GetMapping("/booklist/{bookId}")
-//    public ResultResp booListBycategory(@RequestParam int bookId){
-//        return bookService.bookListByCategory(page,category);
-//    }
+    /**
+     * 图书详情
+     * @param bookId 图书编号
+     * @return
+     */
+    @GetMapping("/booklist/detail")
+    public ResultResp bookDetail(@RequestParam int bookId){
+        return bookService.getBookDetail(bookId);
+    }
 }

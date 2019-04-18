@@ -6,8 +6,13 @@
 	<title>首页</title>
 	<link rel="stylesheet" type="text/css" href="css/public.css" />
 	<link rel="stylesheet" type="text/css" href="css/proList.css" />
+	<link rel="stylesheet" href="js/layui/css/layui.css"  media="all">
 	<script src="js/vue.min.js"></script>
 	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/nav.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/layui/layui.js" charset="utf-8"></script>
 </head>
 
 <body>
@@ -125,7 +130,7 @@
 <div class="paintCon" id="app">
 	<section class="wrapper">
 		<div class="paintList">
-			<a href="proDetail.html" v-for = "item,index in datalist" :id="item.bookId">
+			<a href="proDetail.html" v-for = "item,index in datalist" :id="item.bookId" @click="looked(index,item.bookId)">
 				<dl>
 					<dt><img :src="item.bookPicture"></dt>
 					<dd>{{item.bookName}}</dd>
@@ -135,6 +140,7 @@
 		</div>
 	</section>
 </div>
+<div id="page" style="margin-left: 28%"></div>
 <!--右下角导航栏返回顶部-->
 <div class="gotop">
 	<a href="myinfo/start.html">
@@ -169,36 +175,69 @@
 	<p class="dibu">科院书城&copy;2019公司版权所有<br /> 本网站所列数据，除特殊说明，所有数据均为测试数据
 	</p>
 </div>
+
+<script>
+    layui.use(['laypage', 'layer'], function(){
+        var laypage = layui.laypage
+            ,layer = layui.layer;
+        //分页显示
+        laypage.render({
+            elem: 'page'//指向存放分页的容器，值可以是容器ID、DOM对象
+            ,count: v.count//数据总条数
+            ,limit: 4//每页显示条数
+            ,theme: '#FF5722'
+            ,layout: ['count', 'prev', 'page', 'next', 'refresh', 'skip']
+            ,jump: function(obj){
+                findBookListPage(obj.curr,obj.limit);
+                v.size = obj.limit;
+//                console.log(v.size);
+//                console.log(obj.curr)
+//                console.log(obj)
+            }
+        });
+    });
+</script>
 <script>
     $(function(){
+        findBookListPage(1,4);
+    })
+    //查询数据的请求，
+    function findBookListPage(pageIndex,pageSize) {
+        //console.log("页数："+pageIndex+"条数："+pageSize);
         $.ajax({
             url:"booklist",
             type:"get",
             async: false,//使用同步的方式,true为异步方式
             data:{
-                page:1//localStorage.getItem("uname")
+                pageIndex:pageIndex//localStorage.getItem("uname")
+                ,pageSize:pageSize
             },
             success:function(data){
-                v.datalist = data.data;
-                console.log(data.data);
+                v.datalist = data.data.list;
+                v.count = data.data.rowCount;
             },
             fail:function(){
                 alert(error);
             }
         })
-    })
+    }
     var v = new Vue({
         el: "#app",
         data: {
-            datalist: []
+            datalist: [],
+            pageIndex:1,
+            pageSize:4,
+			count:0
         },
         methods: {
+            looked:function (index,bookId,event) {
+                console.log(index+"______"+bookId);
+				localStorage.setItem("bookId",bookId);
+				//console.log("缓存图书ID："+localStorage.getItem("bookId"));
+            }
         }
     });
 </script>
-<script src="js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/nav.js" type="text/javascript" charset="utf-8"></script>
-<!--<script src="js/pro.js" type="text/javascript" charset="utf-8"></script>-->
+
 </body>
 </html>
