@@ -5,7 +5,16 @@
 		<title>详情页</title>
 		<link rel="stylesheet" type="text/css" href="css/public.css"/>
 		<link rel="stylesheet" type="text/css" href="css/proList.css"/>
+		<link rel="stylesheet" href="js/layui/css/layui.css"  media="all">
+		<script src="js/layui/layui.js" charset="utf-8"></script>
 		<script src="js/vue.min.js"></script>
+		<script src="js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.SuperSlide.2.1.1.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/nav.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/pro.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/cart.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery-3.3.1.min.js	"></script>
 	</head>
 	<body>
 		<!------------------------------head------------------------------>
@@ -122,11 +131,6 @@
 			<div class="detCon">
 				<div class="proDet wrapper">
 					<div class="proCon clearfix">
-						<!--<div class="proImg fl">
-							<div class="smallImg clearfix">
-								<img v-for = "item in picture" :src="item" width="300px" height="300px">
-							</div>
-						</div>-->
 						<div class="fl intro">
 							<div class="title">
 								<h4>{{book.bookName}}</h4>
@@ -136,6 +140,7 @@
 							<div class="btns clearfix">
 								<a href="#2"><p class="buy fl">立即购买</p></a>
 								<a href="#2"><p class="cart fr">收藏</p></a>
+								<a href="#2"><p class="cart fr">取消收藏</p></a>
 							</div>
 						</div>
 					</div>
@@ -145,7 +150,7 @@
 				<div class="msgL fl">
 					<div class="msgTit clearfix">
 						<a class="on">商品详情</a>
-						<a>所有评价</a>
+						<a>留言</a>
 					</div>
 					<div class="msgAll">
 						<div class="msgImgs">
@@ -161,21 +166,18 @@
 									<p>{{item.leaveDate}}</span></p>
 								</div>
 							</div>
-							<div class="per clearfix">
-								<img class="fl" src="img/temp/per02.jpg">
-								<div class="perR fl">
-									<p>么***周</p>
-									<p>花瓶超级棒，我看图以为是光面的，收货发现是磨砂，但感觉也超有质感，很喜欢。磨砂上面还有点纹路，不过觉得挺自然的，不影响美观。包装也很好，绝对不会磕碎碰坏，好评！</p>
-									<p><span>2016年12月27日08:31</span><span>颜色分类：大中小三件套（不含花）</span></p>
-								</div>
+							<div class="btns clearfix" >
+								<p class="cart fl" onclick="leaveWords()">留言</p>
+								<p class="buy fr" id="say" style="display: none" onclick="say()">发布留言</p>
 							</div>
-							<div id="editor">
-								<p></p>
+							<div id="liuyan">
+								<textarea id="demo" style="display: none"></textarea>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+
 		</div>
 		<!--返回顶部-->
 		<div class="gotop">
@@ -212,23 +214,6 @@
 			<p class="dibu">科院书城&copy;2019公司版权所有<br /> 本网站所列数据，除特殊说明，所有数据均为测试数据
 			</p>
 		</div>
-		<script src="js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/jquery.SuperSlide.2.1.1.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/nav.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/pro.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/cart.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/jquery-3.3.1.min.js	"></script>
-		<script type="text/javascript" src="js/wangEditor.js"></script>
-		<script type="text/javascript">
-            var E = window.wangEditor
-            var editor = new E('#editor')
-            // 或者 var editor = new E( document.getElementById('editor') )
-            editor.create()
-		</script>
-		<!--<script type="text/javascript">-->
-			<!--jQuery(".bottom").slide({titCell:".hd ul",mainCell:".bd .likeList",autoPage:true,autoPlay:false,effect:"leftLoop",autoPlay:true,vis:1});-->
-		<!--</script>-->
 	<script>
 		$(function () {
             console.log("详情页"+localStorage.getItem("bookId"))
@@ -262,6 +247,45 @@
             methods: {
             }
 		});
+        var index;
+        function leaveWords() {
+            layui.use('layedit', function(){
+                var layedit = layui.layedit;
+                index = layedit.build('demo',{
+                    height: 230 //设置编辑器高度
+				}); //建立编辑器
+            });
+            $('#liuyan').show();
+            $('#say').css('display','block');
+        }
+
+        function say(){
+            layui.use('layedit', function(){
+                var layedit = layui.layedit;
+                console.log(layedit.getText(index));
+                var leaveWordDto={
+					bookId:localStorage.getItem("bookId"),
+					userName:"柳柳",
+					leaveContent:layedit.getText(index)
+                };
+                $.ajax({
+                    url:"/addleaveword",
+                    type:"post",
+                    contentType : "application/json",              //发送至服务器的类型
+                    dataType : "json",
+                    data:JSON.stringify(leaveWordDto),
+                    success:function(data){
+                        console.log(data);
+                        v.leaveWord=data.data;
+                        $('#say').css('display','none');
+                        $('#liuyan').hide();
+                    },
+                    fail:function(){
+                        alert(error);
+                    }
+                })
+            });
+		}
 	</script>
 	</body>
 </html>

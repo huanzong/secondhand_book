@@ -10,5 +10,5 @@ import java.util.List;
  * @create 2019 04 03
  */
 public interface LeaveWordRepository extends JpaRepository<LeaveWord, Integer> {
-    List<LeaveWord> findByBookIdAndUsable(int bookId, int usable);
+    List<LeaveWord> findByBookIdOrderByCstModifyDesc(int bookId);
 }

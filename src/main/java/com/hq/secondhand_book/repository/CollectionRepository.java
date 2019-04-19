@@ -8,4 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @create 2019 04 03
  */
 public interface CollectionRepository extends JpaRepository<Collection,Integer> {
+
+    Collection getByBookIdAndUserIdAndUsable(int bookId, int userId, int usable);
 }
