@@ -15,7 +15,7 @@ public class BookDetails {
     private String bookSynopsis;    //图书简介
     private String[] bookPicture;//图书图片，主图片，数据库中第一张图
     private String bookPrice;// 图书价格
-    private int isCollection;//是否已收藏
+    private int isCollection;//是否已收藏 0未收藏  1-已收藏
     private List<LeaveWordVo> leaveWordList;//留言
 
     public BookDetails() {

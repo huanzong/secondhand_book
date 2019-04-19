@@ -87,7 +87,7 @@ $(function(){
         seconds--;
         $(".ok span").text(seconds);
         if(seconds==0){
-            window.location.href=("myorderq.html")
+            window.location.href=("/myinfo/myorderq.html")
         }
     }
     setInterval(time,1000);

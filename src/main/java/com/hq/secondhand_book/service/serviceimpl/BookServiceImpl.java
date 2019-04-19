@@ -65,6 +65,12 @@ public class BookServiceImpl implements BookService {
         return Response.ok(bookListPageVo);
     }
 
+    /**
+     * 分类查询图书
+     * @param page
+     * @param category
+     * @return
+     */
     @Override
     public ResultResp bookListByCategory(int page, String category) {
         List<BookListVo> bookListVos=new ArrayList<>();
@@ -94,8 +100,9 @@ public class BookServiceImpl implements BookService {
         return Response.dataErr("找不到资源");
     }
 
+
     @Override
-    public ResultResp getBookDetail(int bookId) {
+    public ResultResp getBookDetail(int bookId, String userName) {
         BookDetails bookDetails = new BookDetails();
         Book book = bookRepository.findByIdAndUsable(bookId,Constant.USABLE);
         if(book!=null){
@@ -110,10 +117,6 @@ public class BookServiceImpl implements BookService {
             bookDetails.setBookSynopsis(book.getBookSysnopsis());
             DecimalFormat df = new DecimalFormat("#.00");
             bookDetails.setBookPrice(df.format(book.getBookPrice()));
-            //TODO 收藏功能
-            int isCollection = 0;
-            //Collection collection = collectionRepository.getByBookIdAndUserIdAndUsable(bookId,)
-            bookDetails.setIsCollection(isCollection);
 
             //bookDetails.setBookPrice(book.getBookPrice());
             List<LeaveWordVo> leaveWordVoList = new ArrayList<>();
@@ -136,6 +139,16 @@ public class BookServiceImpl implements BookService {
                 }
             }
             bookDetails.setLeaveWordList(leaveWordVoList);
+            //TODO 收藏功能
+            int isCollection = 0;
+            if(!userName.isEmpty()){
+                User user = userRepositiry.findByUserName(userName);
+                Collection collection = collectionRepository.getByBookIdAndUserIdAndUsable(bookId,user.getId(),Constant.USABLE);
+                if(collection!=null){
+                    isCollection = 1;
+                }
+            }
+            bookDetails.setIsCollection(isCollection);
         }
         return Response.ok(bookDetails);
     }

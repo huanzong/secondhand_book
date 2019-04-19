@@ -39,7 +39,8 @@ public class BookController {
      * @return
      */
     @GetMapping("/booklist/detail")
-    public ResultResp bookDetail(@RequestParam int bookId){
-        return bookService.getBookDetail(bookId);
+    public ResultResp bookDetail(@RequestParam int bookId,String userName){
+        System.out.println(userName);
+        return bookService.getBookDetail(bookId,userName);
     }
 }

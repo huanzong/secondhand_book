@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:v-if="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta charset="UTF-8">
 		<title>详情页</title>
@@ -7,7 +7,6 @@
 		<link rel="stylesheet" type="text/css" href="css/proList.css"/>
 		<link rel="stylesheet" href="js/layui/css/layui.css"  media="all">
 		<script src="js/layui/layui.js" charset="utf-8"></script>
-		<script src="js/vue.min.js"></script>
 		<script src="js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/jquery.SuperSlide.2.1.1.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
@@ -15,6 +14,7 @@
 		<script src="js/pro.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/cart.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/jquery-3.3.1.min.js	"></script>
+		<script src="js/vue.min.js"></script>
 	</head>
 	<body>
 		<!------------------------------head------------------------------>
@@ -138,9 +138,9 @@
 								<span>￥{{book.bookPrice}}</span>
 							</div>
 							<div class="btns clearfix">
-								<a href="#2"><p class="buy fl">立即购买</p></a>
-								<a href="#2"><p class="cart fr">收藏</p></a>
-								<a href="#2"><p class="cart fr">取消收藏</p></a>
+								<a href="oder.html" @click="buybook()"><p class="buy fl">立即购买</p></a>
+								<a href="#2" v-if="book.isCollection==1" @click="collection()"><p class="cart fr">取消收藏</p></a>
+								<a href="#2"  v-else><p class="cart fr" @click="cancel()">收藏</p></a>
 							</div>
 						</div>
 					</div>
@@ -207,7 +207,6 @@
 			</a>
 			<p>400-800-8200</p>
 		</div>
-		<div class="msk"></div>
 		<!--footer-->
 		<div class="footer">
 			<div style="margin-top: 30px;"></div>
@@ -223,10 +222,12 @@
                 async: false,//使用同步的方式,true为异步方式
                 data:{
                     bookId:localStorage.getItem("bookId"),
+					userName:localStorage.getItem("userName")
                 },
                 success:function(data){
                     v.book = data.data;
                     v.picture = data.data.bookPicture;
+                    console.log("是否收藏："+v.book.isCollection+"结束");
                     v.leaveWord = data.data.leaveWordList;
                     console.log(data.data);
                     console.log(v.picture);
@@ -245,6 +246,18 @@
 				picture:[]
             },
             methods: {
+                collection:function () {
+                    console.log(localStorage.getItem("bookId"))
+                    console.log(localStorage.getItem("userName"))
+                },
+                cancel:function () {
+                    console.log(localStorage.getItem("bookId"))
+                    console.log(localStorage.getItem("userName"))
+                },
+                buybook:function () {
+                    console.log(localStorage.getItem("bookId"))
+                    console.log(localStorage.getItem("userName"))
+                },
             }
 		});
         var index;

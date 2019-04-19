@@ -1,5 +1,4 @@
 $(function(){
-
 //	订单页面  修改地址
 	$(".edit").click(function(){
 		$(".mask").show();
