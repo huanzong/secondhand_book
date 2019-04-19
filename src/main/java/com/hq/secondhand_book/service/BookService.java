@@ -7,5 +7,5 @@ public interface BookService {
 
     ResultResp bookListByCategory(int page,String category);
 
-    ResultResp getBookDetail(int bookId);
+    ResultResp getBookDetail(int bookId,String userName);
 }

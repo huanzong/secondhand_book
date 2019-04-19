@@ -29,6 +29,9 @@ public class ReceivingAddress {
     @Column(name = "place_name")
     private String placeName;       //交易地点
 
+    @Column(name = "is_default")
+    private Integer isDefault;   //是否为默认值：0-否 1-是
+
     @Column(name = "is_usable")
     private Integer usable;   //是否可用：0-否 1-是
 

@@ -1,13 +1,7 @@
 package com.hq.secondhand_book.service.serviceimpl;
 
-import com.hq.secondhand_book.entity.Book;
-import com.hq.secondhand_book.entity.BookCategory;
-import com.hq.secondhand_book.entity.LeaveWord;
-import com.hq.secondhand_book.entity.User;
-import com.hq.secondhand_book.repository.BookCategoryRepository;
-import com.hq.secondhand_book.repository.BookRepository;
-import com.hq.secondhand_book.repository.LeaveWordRepository;
-import com.hq.secondhand_book.repository.UserRepositiry;
+import com.hq.secondhand_book.entity.*;
+import com.hq.secondhand_book.repository.*;
 import com.hq.secondhand_book.service.BookService;
 import com.hq.secondhand_book.util.Constant;
 import com.hq.secondhand_book.util.resp.Response;
@@ -24,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +32,8 @@ public class BookServiceImpl implements BookService {
     LeaveWordRepository leaveWordRepository;
     @Resource
     UserRepositiry userRepositiry;
+    @Resource
+    CollectionRepository collectionRepository;
 
     @Override
     public ResultResp bookList(int page, int size) {
@@ -68,6 +65,12 @@ public class BookServiceImpl implements BookService {
         return Response.ok(bookListPageVo);
     }
 
+    /**
+     * 分类查询图书
+     * @param page
+     * @param category
+     * @return
+     */
     @Override
     public ResultResp bookListByCategory(int page, String category) {
         List<BookListVo> bookListVos=new ArrayList<>();
@@ -97,8 +100,9 @@ public class BookServiceImpl implements BookService {
         return Response.dataErr("找不到资源");
     }
 
+
     @Override
-    public ResultResp getBookDetail(int bookId) {
+    public ResultResp getBookDetail(int bookId, String userName) {
         BookDetails bookDetails = new BookDetails();
         Book book = bookRepository.findByIdAndUsable(bookId,Constant.USABLE);
         if(book!=null){
@@ -116,12 +120,12 @@ public class BookServiceImpl implements BookService {
 
             //bookDetails.setBookPrice(book.getBookPrice());
             List<LeaveWordVo> leaveWordVoList = new ArrayList<>();
-            List<LeaveWord> leaveWords = leaveWordRepository.findByBookIdAndUsable(bookId,Constant.USABLE);
+            List<LeaveWord> leaveWords = leaveWordRepository.findByBookIdOrderByCstModifyDesc(bookId);
             if(!leaveWords.isEmpty()){
                 for(LeaveWord leaveWord:leaveWords){
                     LeaveWordVo leaveWordVo=new LeaveWordVo();
                     leaveWordVo.setLeaveId(leaveWord.getId());
-                    User user = userRepositiry.findByIdAndUsable(leaveWord.getId(), Constant.USABLE);
+                    User user = userRepositiry.findByIdAndUsable(leaveWord.getUserId(), Constant.USABLE);
                     if(user!=null){
                         leaveWordVo.setUserName(user.getUserName());
                         String pic = "picture/user/"+ user.getUserPic();
@@ -129,11 +133,22 @@ public class BookServiceImpl implements BookService {
                     }
                     leaveWordVo.setLeaveFatherId(leaveWord.getLeaveFatherId());
                     leaveWordVo.setLeaveContent(leaveWord.getLeaveContent());
-                    leaveWordVo.setLeaveDate(leaveWord.getCstModify().toString());
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+                    leaveWordVo.setLeaveDate(sdf.format(leaveWord.getCstModify()));
                     leaveWordVoList.add(leaveWordVo);
                 }
             }
             bookDetails.setLeaveWordList(leaveWordVoList);
+            //TODO 收藏功能
+            int isCollection = 0;
+            if(!userName.isEmpty()){
+                User user = userRepositiry.findByUserName(userName);
+                Collection collection = collectionRepository.getByBookIdAndUserIdAndUsable(bookId,user.getId(),Constant.USABLE);
+                if(collection!=null){
+                    isCollection = 1;
+                }
+            }
+            bookDetails.setIsCollection(isCollection);
         }
         return Response.ok(bookDetails);
     }

@@ -31,7 +31,7 @@ public class PlaceTransactionServiceImpl implements PlaceTransactionService {
                 vo.setPlaceFatherId(placeTransaction.getPlaceFatherId());
                 vo.setPlaceName(placeTransaction.getPlaceName());
                 vo.setPlaceLevel(placeTransaction.getPlaceLevel());
-                vo.setPlaceTransactionId(placeTransaction.getPlaceFatherId());
+                vo.setPlaceTransactionId(placeTransaction.getId());
                 vos.add(vo);
             }
         }

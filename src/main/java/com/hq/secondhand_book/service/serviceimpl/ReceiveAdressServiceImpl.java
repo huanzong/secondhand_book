@@ -37,6 +37,7 @@ public class ReceiveAdressServiceImpl implements ReceiveAdressService {
                     vo.setPlaceName(address.getPlaceName());
                     vo.setReceiverName(address.getReceiverName());
                     vo.setReceiverTel(address.getReceiverTel());
+                    vo.setIsDefault(address.getIsDefault());
                     receiveAddressVos.add(vo);
                 }
             }
