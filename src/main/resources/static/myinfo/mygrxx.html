@@ -46,7 +46,7 @@
 				<div class="zuo fl">
 					<h3>
 						<a href="#"><img src="../images/tx.png" id="touxiang" width="90px" height="90px"/></a>
-						<p class="clearfix"><span class="fl">[{{edata.userName}}]</span><span class="fr">[注销]</span></p>
+						<p class="clearfix"><span class="fl">[{{userName}}]</span><span class="fr">[注销]</span></p>
 					</h3>
 					<div>
 						<h4>我的交易</h4>
@@ -267,12 +267,14 @@
                 },
                 success:function(data){
                     v.datalist = data.data;
-                    edit.edata = data.data;
+                    v.userName=data.data.userName;
+                    ed.edata = data.data;
                     $("#touxiang").attr("src",data.data.userPic);
                     $("#touxiang1").attr("src",data.data.userPic);
+
                     console.log(data.data);
-                    console.log(data.data.userPic);
-                    console.log(edit.edata = data.data);
+                    console.log(ed.edata);
+                    console.log(ed.edata == data.data);
                 },
                 fail:function(){
                     alert(error);
@@ -282,18 +284,19 @@
         var v = new Vue({
             el: "#app",
             data: {
-                datalist: []
+                datalist: [],
+				userName:""
             },
             methods: {
 
             }
         });
-        var edit = new Vue({
-            	el:"edit",
-				data:{
-            	    edata:[]
-				},
-			methods: {
+        var ed = new Vue({
+            el:"edit",
+            data:{
+                edata:[]
+            },
+            methods: {
                 editet: function() {
                     //把获取到的编号传到后台，把查到的数据展示到详情页的界面上
                     $.ajax({
@@ -312,7 +315,7 @@
                         }
                     });
                 },
-			}
-		});
+            }
+        });
 	</script>
 </html>
