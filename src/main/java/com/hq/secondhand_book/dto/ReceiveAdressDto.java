@@ -1,10 +1,15 @@
-package com.hq.secondhand_book.vo;
+package com.hq.secondhand_book.dto;
 
 import lombok.Data;
 
+/**
+ * @auther xinye
+ * @create 2019 04 20
+ */
 @Data
-public class ReceiveAddressVo {
-    private int receiveId;//收货地址编号
+public class ReceiveAdressDto {
+    private int receiveId;
+    private String userName;//用户名
     private String receiverName;//收货人姓名
     private String placeName;//交易地点名
     private String receiverTel;//收货人电话

@@ -31,7 +31,7 @@ public class OrderForm {
     private Integer orderState;         //订单状态
 
     @Column( name = "order_remark")
-    private Integer orderRemark;        //订单留言
+    private String orderRemark;        //订单留言
 
     @Column(name = "is_usable")
     private Integer usable;   //是否可用：0-否 1-是

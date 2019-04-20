@@ -13,4 +13,5 @@ public interface ReceivingAddressRepository extends JpaRepository<ReceivingAddre
 
     List<ReceivingAddress> getByUserIdAndUsable(int userId, int usable);
 
+    ReceivingAddress getById(int userId);
 }

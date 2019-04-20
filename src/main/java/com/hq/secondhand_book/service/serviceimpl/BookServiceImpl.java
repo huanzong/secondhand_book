@@ -101,6 +101,12 @@ public class BookServiceImpl implements BookService {
     }
 
 
+    /**
+     * 详情
+     * @param bookId
+     * @param userName
+     * @return
+     */
     @Override
     public ResultResp getBookDetail(int bookId, String userName) {
         BookDetails bookDetails = new BookDetails();
@@ -118,6 +124,7 @@ public class BookServiceImpl implements BookService {
             DecimalFormat df = new DecimalFormat("#.00");
             bookDetails.setBookPrice(df.format(book.getBookPrice()));
 
+            //留言
             //bookDetails.setBookPrice(book.getBookPrice());
             List<LeaveWordVo> leaveWordVoList = new ArrayList<>();
             List<LeaveWord> leaveWords = leaveWordRepository.findByBookIdOrderByCstModifyDesc(bookId);
@@ -151,5 +158,22 @@ public class BookServiceImpl implements BookService {
             bookDetails.setIsCollection(isCollection);
         }
         return Response.ok(bookDetails);
+    }
+
+    @Override
+    public ResultResp getbookOrder(int bookId) {
+        Book book = bookRepository.findByIdAndUsable(bookId,Constant.USABLE);
+        BookListVo vo = new BookListVo();
+        if( book!=null){
+            vo.setBookId(bookId);
+            vo.setBookName(book.getBookName());
+            String pic = "picture/book/"+ book.getBookPicture().split("#")[0];
+            vo.setBookPicture(pic);
+            DecimalFormat df = new DecimalFormat("#.00");
+            vo.setBookPrice(df.format(book.getBookPrice()));
+            return Response.ok(vo);
+        }
+        return Response.dataErr("图书已失效");
+
     }
 }

@@ -43,4 +43,12 @@ public class BookController {
         System.out.println(userName);
         return bookService.getBookDetail(bookId,userName);
     }
+
+    /**
+     * 图书订单页
+     */
+    @GetMapping("/detail")
+    public ResultResp bookOrder(@RequestParam int bookId){
+        return bookService.getbookOrder(bookId);
+    }
 }

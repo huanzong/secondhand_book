@@ -6,6 +6,8 @@
     <link rel="stylesheet" type="text/css" href="../css/public.css"/>
     <link rel="stylesheet" type="text/css" href="../css/proList.css"/>
     <link rel="stylesheet" type="text/css" href="../css/mygxin.css"/>
+    <link rel="stylesheet" href="../js/layui-v2.2.5/css/layui.css" media="all">
+    <script src="../js/layui-v2.2.5/layui.js" charset="utf-8"></script>
     <script src="../js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/public.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/pro.js" type="text/javascript" charset="utf-8"></script>
@@ -25,89 +27,8 @@
                     <a href="login.html" id="login">登录</a>
                     <a href="reg.html" id="reg">注册</a>
                 </p>
-                <form action="#" method="get" class="fl">
-                    <input type="text" placeholder="搜索"/>
-                    <input type="button"/>
-                </form>
             </div>
         </div>
-        <ul class="clearfix" id="bott">
-            <li><a href="index.html">首页</a></li>
-            <li>
-                <a href="flowerDer.html">考试教育</a>
-                <div class="sList2">
-                    <div class="clearfix">
-                        <a href="../flowerDer.html">公务员考试</a>
-                        <a href="../flowerDer.html">英语考试</a>
-                        <a href="../flowerDer.html">考研</a>
-                        <a href="../flowerDer.html">其他考试</a>
-                        <a href="../flowerDer.html">职称考试</a>
-                        <a href="../flowerDer.html">教辅书</a>
-                        <a href="../flowerDer.html">工具书</a>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <a href="decoration.html">经济管理</a>
-                <div class="sList2">
-                    <div class="clearfix">
-                        <a href="../flowerDer.html">成功励志</a>
-                        <a href="../flowerDer.html">管理</a>
-                        <a href="../flowerDer.html">经济金融</a>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <a href="paint.html">文学艺术</a>
-                <div class="sList2">
-                    <div class="clearfix">
-                        <a href="../flowerDer.html">收藏鉴赏</a>
-                        <a href="../flowerDer.html">艺术</a>
-                        <a href="../flowerDer.html">文学小说</a>
-                        <a href="../flowerDer.html">文化历史</a>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <a href="../flowerDer.html">人文社科</a>
-                <div class="sList2">
-                    <div class="clearfix">
-                        <a href="../flowerDer.html">新闻传播</a>
-                        <a href="../flowerDer.html">心理</a>
-                        <a href="../flowerDer.html">法律</a>
-                        <a href="../flowerDer.html">自然科学</a>
-                        <a href="../flowerDer.html">社会科学</a>
-                        <a href="../flowerDer.html">政治军事</a>
-                        <a href="../flowerDer.html">宗教哲学</a>
-                        <a href="../flowerDer.html">语言学习</a>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <a href="../flowerDer.html">科学技术</a>
-                <div class="sList2">
-                    <div class="clearfix">
-                        <a href="../flowerDer.html">汽车与交通运输</a>
-                        <a href="../flowerDer.html">医学卫生</a>
-                        <a href="../flowerDer.html">计算机与网络</a>
-                        <a href="../flowerDer.html">科技工程</a>
-                        <a href="../flowerDer.html">建筑</a>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <a href="../flowerDer.html">生活休闲</a>
-                <div class="sList2">
-                    <div class="clearfix">
-                        <a href="../flowerDer.html">生活时尚</a>
-                        <a href="../flowerDer.html">家庭育儿</a>
-                        <a href="../flowerDer.html">旅游地理</a>
-                        <a href="../flowerDer.html">体育保健</a>
-                        <a href="../flowerDer.html">少儿</a>
-                    </div>
-                </div>
-            </li>
-        </ul>
     </div>
 </div>
 <!------------------------------idea------------------------------>
@@ -161,7 +82,7 @@
                             <div class="addre fl" v-for = "item,index in datalist">
                                 <div class="tit clearfix">
                                     <p class="fl">{{item.receiverName}}
-                                        <span v-if="item.isDefault == 1" class="default">[默认地址]</span>
+                                        <!--<span v-if="item.isDefault == 1" class="default">[默认地址]</span>-->
                                     </p>
                                     <p class="fr">
                                         <a href="#" @click="del(index)">删除</a>
@@ -184,27 +105,35 @@
 <!--编辑弹框-->
 <!--遮罩-->
 <div class="mask"></div>
+<!--添加地址-->
 <div class="adddz" id="addplace">
-    <form>
-        <input type="text" placeholder="姓名" class="on"/>
-        <input type="text" placeholder="手机号"/>
+    <form  class="layui-form">
+        <input type="text" placeholder="姓名" class="on" v-model="address.receiverName" required/><span id="addrname" style="display: none;color: red">用户名必须填写</span>
+        <input type="text" placeholder="手机号" id="tel" v-model="address.receiverTel" required/><span id="addrtel" style="display: none;color: red">电话不可为空</span>
         <div class="city">
-            <select name="">
-                <option value="省份/自治区">桃园</option>
-                <option value="省份/自治区">荷园</option>
-                <option value="省份/自治区">松原</option>
+            <select id="adressname" v-model="address.placeName" required>
+                <option :value="item.placeName" :id="item.placeTransactionId"  v-for="item in place">{{item.placeName}}</option>
+                <!--<option value="省份/自治区">荷园</option>-->
+                <!--<option value="省份/自治区">松原</option>-->
             </select>
         </div>
+        <!--<div class="layui-form-item">-->
+            <!--<label class="layui-form-label">设为默认地址</label>-->
+            <!--<div class="layui-input-block">-->
+                <!--<input type="checkbox" name="close" lay-filter="switchTest" lay-skin="switch" lay-text="ON|OFF">-->
+            <!--</div>-->
+        <!--</div>-->
         <div class="bc">
             <input type="button" value="添加" @click="add()"/>
             <input type="button" value="取消" @click="close"/>
         </div>
     </form>
 </div>
+<!--编辑地址-->
 <div class="readd" id="editaddr">
     <form class="layui-form">
-        <input type="text" class="on" value="六六六" v-model="address.receiverName"/>
-        <input type="text" value="157****0022" v-model="address.receiverTel"/>
+        <input type="text" class="on" value="六六六" v-model="address.receiverName" required/><span id="addrname" style="display: none;color: red">用户名必须填写</span>
+        <input type="text" value="157****0022" v-model="address.receiverTel" required/><span id="addrtel" style="display: none;color: red">电话不可为空</span>
         <div class="city">
             <select v-model="address.placeName">
                 <option :value="item.placeName" :id="item.placeTransactionId"  v-for="item in place">{{item.placeName}}</option>
@@ -212,6 +141,12 @@
                 <!--<option value="省份/自治区">松原</option>-->
             </select>
         </div>
+        <!--<div class="layui-form-item">-->
+            <!--<label class="layui-form-label" style="width: 120px;margin-left: -10px" >设为默认地址</label>-->
+            <!--<div class="layui-input-block">-->
+                <!--<input type="checkbox" id="isDefault" name="close" lay-filter="switchTest" lay-skin="switch" lay-text="ON|OFF">-->
+            <!--</div>-->
+        <!--</div>-->
         <div class="bc">
             <input type="button" value="保存" @click="save()"/>
             <input type="button" value="取消" @click="close()"/>
@@ -256,8 +191,9 @@
         $(".mask").show();
         $(".adddz").show();
     });
-</script>
-<script>
+    layui.use(['form'], function(){
+        var form = layui.form
+    })
     $(function(){
         $.ajax({
             url:"/../getreceiveadress",
@@ -268,37 +204,12 @@
             },
             success:function(data){
                 v.datalist = data.data;
-                console.log(v.datalist);
             },
             fail:function(){
                 alert(error);
             }
         })
     })
-    var v = new Vue({
-        el: "#app",
-        data: {
-            datalist: []
-        },
-        methods: {
-            del:function (index) {
-                console.log(this.datalist[index]);
-            },
-            editaddr:function (index) {
-                $(".mask").show();
-                $(".readd").show();
-                console.log(this.datalist[index]);
-                editdz.address = this.datalist[index];
-                console.log(editdz.address)
-                findPlace();
-            },
-            addplace:function () {
-                $(".mask").show();
-                $(".adddz").show();
-            }
-        }
-    });
-
     function findPlace(){
         $.ajax({
             url:"/../placelist",
@@ -314,19 +225,106 @@
                 alert(error);
             }
         })
-
     }
+    var v = new Vue({
+        el: "#app",
+        data: {
+            datalist: []
+        },
+        methods: {
+            del:function (index) {
+                var msg= confirm("您真的要删除吗！");
+                if(msg){
+                    $.ajax({
+                        url:"/../deleteaddress",
+                        type:"delete",
+                        async: false,//使用同步的方式,true为异步方式
+                        data:{
+                            id:this.datalist[index].receiveId,//localStorage.getItem("userName")
+                        },
+                        success:function(data){
+                            window.location.reload()
+                        },
+                        fail:function(){
+                            alert(error);
+                        }
+                    })
+                }
+
+            },
+            editaddr:function (index) {
+                findPlace();
+                setTimeout(function () {
+                    layui.form.render();//延迟重新渲染
+                },10);
+                $(".mask").show();
+                $(".readd").show();
+                editdz.address = this.datalist[index];
+                editdz.addrid = this.datalist[index].receiveId;
+
+            },
+            addplace:function () {
+                findPlace();
+                setTimeout(function () {
+                    layui.form.render();//延迟重新渲染
+                },10);
+                console.log(addplace.place)
+                $(".mask").show();
+                $(".adddz").show();
+            }
+        }
+    });
     //新增地址
     var addplace = new Vue({
         el:"#addplace",
         data:{
-            address:[],
-            place:[]
+            place:[],
+            address:[]
         },
         methods:{
+            add:function () {
+                this.address.placeName=$("select option:checked").text();
+                console.log(this.address)
+                if(this.address.receiverName==null||this.address.receiverName.length==0){
+                    $("#addrname").show();
+                }else {
+                    $("#addrname").hide();
+                }
+                if(this.address.receiverTel==null||this.address.receiverTel.length==0){
+                    $("#addrtel").show();
+                }else{
+                    $("#addrtel").hide();
+                }
+                if((this.address.receiverName!=null||this.address.receiverName.length!=0)&&
+                    (this.address.receiverTel!=null||this.address.receiverTel.length!=0)){
+                    var dto={
+                        userName:"张三",//localStorage.getItem("userName");
+                        receiverName:this.address.receiverName,
+                        receiverTel:this.address.receiverTel,
+                        placeName:this.address.placeName
+                    }
+                    $.ajax({
+                        url:"/../addreceiveadress",
+                        type:"post",
+                        contentType : "application/json",              //发送至服务器的类型
+                        dataType : "json",
+                        data:JSON.stringify(dto),
+                        async: false,//使用同步的方式,true为异步方式
+                        success:function(data){
+                            $(".mask").hide();
+                            $("#addplace").hide();
+                            window.location.reload()
+                        },
+                        fail:function(){
+                            alert(error);
+                        }
+                    })
+                }
+            },
             close:function () {
                 $(".mask").hide();
                 $("#addplace").hide();
+                window.location.reload()
             }
         }
     });
@@ -335,9 +333,49 @@
         el:"#editaddr",
         data:{
             address:[],
-            place:[]
+            place:[],
+            addrid:0,
         },
         methods:{
+            save:function () {
+                this.address.placeName=$("select option:checked").text();
+                var dto={
+                    userName:"张三",//localStorage.getItem("userName");
+                    receiveId:this.addrid,
+                    receiverName:this.address.receiverName,
+                    receiverTel:this.address.receiverTel,
+                    placeName:this.address.placeName
+                }
+                if(this.address.receiverName==null||this.address.receiverName.length==0){
+                    $("#addrname").show();
+                }else {
+                    $("#addrname").hide();
+                }
+                if(this.address.receiverTel==null||this.address.receiverTel.length==0){
+                    $("#addrtel").show();
+                }else{
+                    $("#addrtel").hide();
+                }
+                if((this.address.receiverName!=null||this.address.receiverName.length!=0)&&
+                    (this.address.receiverTel!=null||this.address.receiverTel.length!=0)) {
+                    $.ajax({
+                        url: "/../editreceiveadress",
+                        type: "post",
+                        contentType: "application/json",              //发送至服务器的类型
+                        dataType: "json",
+                        data: JSON.stringify(dto),
+                        async: false,//使用同步的方式,true为异步方式
+                        success: function (data) {
+                            $(".mask").hide();
+                            $("#editaddr").hide();
+                            window.location.reload()
+                        },
+                        fail: function () {
+                            alert(error);
+                        }
+                    })
+                }
+            },
             close:function () {
                 $(".mask").hide();
                 $("#editaddr").hide();

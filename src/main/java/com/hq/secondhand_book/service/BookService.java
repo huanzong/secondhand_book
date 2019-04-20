@@ -8,4 +8,6 @@ public interface BookService {
     ResultResp bookListByCategory(int page,String category);
 
     ResultResp getBookDetail(int bookId,String userName);
+
+    ResultResp getbookOrder(int bookId);
 }
