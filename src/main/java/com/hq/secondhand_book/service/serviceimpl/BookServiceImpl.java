@@ -35,6 +35,9 @@ public class BookServiceImpl implements BookService {
     @Resource
     CollectionRepository collectionRepository;
 
+    /**
+     * 图书列表
+     */
     @Override
     public ResultResp bookList(int page, int size) {
         System.out.println("page:"+page+"size:"+size);
@@ -67,9 +70,6 @@ public class BookServiceImpl implements BookService {
 
     /**
      * 分类查询图书
-     * @param page
-     * @param category
-     * @return
      */
     @Override
     public ResultResp bookListByCategory(int page, String category) {
@@ -77,7 +77,7 @@ public class BookServiceImpl implements BookService {
         if(page<1){
             return Response.dataErr("页码数不能小于1");
         }
-        Pageable pageable = PageRequest.of(page-1,12, Sort.Direction.DESC,"cstModify");
+        Pageable pageable = PageRequest.of(page-1,4, Sort.Direction.DESC,"cstModify");
         BookCategory bookCategory = bookCategoryRepository.getByBookCategoryName(category);
         if(bookCategory!=null){
             int bookCategoryId = bookCategory.getId();
@@ -123,9 +123,7 @@ public class BookServiceImpl implements BookService {
             bookDetails.setBookSynopsis(book.getBookSysnopsis());
             DecimalFormat df = new DecimalFormat("#.00");
             bookDetails.setBookPrice(df.format(book.getBookPrice()));
-
-            //留言
-            //bookDetails.setBookPrice(book.getBookPrice());
+            //留言功能
             List<LeaveWordVo> leaveWordVoList = new ArrayList<>();
             List<LeaveWord> leaveWords = leaveWordRepository.findByBookIdOrderByCstModifyDesc(bookId);
             if(!leaveWords.isEmpty()){
@@ -146,7 +144,7 @@ public class BookServiceImpl implements BookService {
                 }
             }
             bookDetails.setLeaveWordList(leaveWordVoList);
-            //TODO 收藏功能
+            //判断已登录用户是否已收藏该图书
             int isCollection = 0;
             if(!userName.isEmpty()){
                 User user = userRepositiry.findByUserName(userName);
@@ -160,6 +158,9 @@ public class BookServiceImpl implements BookService {
         return Response.ok(bookDetails);
     }
 
+    /**
+     * 生成订单页显示图书信息
+     */
     @Override
     public ResultResp getbookOrder(int bookId) {
         Book book = bookRepository.findByIdAndUsable(bookId,Constant.USABLE);

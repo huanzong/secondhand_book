@@ -8,13 +8,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 /**
- * @auther xinye
+ * @auther 黄琦
  * @create 2019 04 03
  */
 public interface BookRepository extends JpaRepository<Book,Integer> {
     Page<Book> findAllByUsable(int usable, Pageable pageable);
     List<Book> findAllByUsable(Integer usable);
-    Book findByUserIdAndBookNameAndBookSysnopsisAndBookPriceAndBookCategoryId(int userId,String bookName,String bookSysnopsis,Double bookPrice,int bookCategory);
+    Book findByUserIdAndBookNameAndBookSysnopsisAndBookPriceAndBookCategoryId(
+            int userId,String bookName,String bookSysnopsis,Double bookPrice,int bookCategory);
 
     Page<Book> findByBookCategoryIdAndUsable(int categoryId,int usable, Pageable pageable);
 
