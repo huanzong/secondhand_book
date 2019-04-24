@@ -51,4 +51,7 @@ public class User {
 
     @Column(name = "cst_modify")
     private Date cstModify;   //数据的修改时间
+
+    @Column(name = "cst_dodify")
+    private Date cstDodify;   //数据的修改时间
 }
