@@ -5,11 +5,6 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.Date;
 
-/**
- * @auther 黄琦
- * @create 2019 04 02
- */
-
 @Entity
 @Data
 @Table(name = "book")

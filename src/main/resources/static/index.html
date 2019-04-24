@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head lang="en">
 	<meta charset="utf-8" />
 	<title>首页</title>
@@ -27,15 +26,15 @@
 					<a href="reg.html" id="reg">注册</a>
 				</p>
 				<form action="#" method="get" class="fl">
-					<input type="text" placeholder="搜索" />
-					<input type="button" />
+					<input type="text" placeholder="搜索" /><input type="button" style="margin-top: -30px"/>
 				</form>
-				<div class="btn fl clearfix">
+				<div class="btn fr clearfix">
 					<a href="myinfo/mygxin.html"><img src="images/grzx.png" /></a>
 					<a href="myinfo/start.html"><img src="images/collection.png" /></a>
 				</div>
 			</div>
 		</div>
+		<!--导航栏代码-->
 		<ul class="clearfix" id="bott">
 			<li>
 				<a href="index.html">首页</a>
@@ -117,7 +116,6 @@
 		</ul>
 	</div>
 </div>
-
 <!-----------------address------------------------------->
 <div class="address">
 	<div class="wrapper clearfix">
@@ -190,9 +188,6 @@
             ,jump: function(obj){
                 findBookListPage(obj.curr,obj.limit);
                 v.size = obj.limit;
-//                console.log(v.size);
-//                console.log(obj.curr)
-//                console.log(obj)
             }
         });
     });

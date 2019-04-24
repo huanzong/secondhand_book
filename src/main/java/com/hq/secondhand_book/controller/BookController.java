@@ -14,8 +14,6 @@ public class BookController {
 
     /**
      * 图书列表
-     * @param pageIndex 页数
-     * @param pageSize 每页显示条数
      * @return
      */
     @GetMapping("/booklist")
