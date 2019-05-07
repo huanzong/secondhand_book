@@ -15,4 +15,14 @@ public class Constant {
     public static final Integer DELIVERY = 0;
     public static final Integer RECEIVED = 1;
     public static final Integer CANCEL = 2;
+
+    /**用户角色
+     * MEMBER-普通会员  ADMIN-管理员 */
+    public static final Integer MEMBER = 0;
+    public static final Integer ADMIN = 1;
+
+    /**用户角色
+     * CANCELSTART-未收藏  START-收藏 */
+    public static final Integer CANCELSTART = 0;
+    public static final Integer START = 1;
 }

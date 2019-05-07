@@ -38,11 +38,12 @@
 .forCon form img{
 	margin-top:10px;
 }
-.forCon form input[type="text"]{
-	border:1px solid #DBDBDB;
-	width:250px;
-	padding-left:10px;
-}
+.forCon form input[type="text"] {
+	 border:1px solid #DBDBDB;
+	 width:250px;
+	 padding-left:10px;
+ }
+
 .forCon form input[type="button"]{
 	width:120px;
 	color: #fff;

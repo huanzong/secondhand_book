@@ -3,21 +3,47 @@ package com.hq.secondhand_book.service;
 
 import com.hq.secondhand_book.dto.UserDto;
 import com.hq.secondhand_book.entity.User;
+import com.hq.secondhand_book.util.resp.ResultResp;
 import com.hq.secondhand_book.vo.LoginVo;
 import com.hq.secondhand_book.vo.RegisterVo;
-import com.hq.secondhand_book.vo.UserInfoVo;
-
-import java.util.Optional;
+import com.hq.secondhand_book.vo.user.UserInfoVo;
 
 /**
- * @auther xinye
+ * @auther 黄琦
  * @create 2019 04 03
  */
 public interface UserService {
-    boolean isUsernameExist(String username);
+    ResultResp isUsernameExist(String username);
+
     boolean register(RegisterVo registerVo);
-    boolean login(LoginVo loginVo);
-    User addUser(User user);
+
+    ResultResp login(LoginVo loginVo);
+
+    ResultResp addUser(String userName,String userPwd);
+
     UserInfoVo getUser(String userName);
-    void updateUser(UserDto userDto);
+
+    ResultResp updateUser(UserDto userDto);
+
+    ResultResp userList(int page, int size);
+
+    ResultResp findByUserNameList(String userName, int page,int size);
+
+    ResultResp adminUserList(int page, int size);
+
+    ResultResp findByAdminUserNameList(String userName, int page,int size);
+
+    ResultResp deleteUser(int userId);
+
+    ResultResp adminAddUser(int userId);
+
+    ResultResp resetPwd(int userId);
+
+    ResultResp findByUserId(int userId);
+
+    ResultResp findByUserName(String userName);
+
+    ResultResp rePwd(String userName,String userPwd, String newPwd);
+
+    ResultResp myCount(String userName);
 }

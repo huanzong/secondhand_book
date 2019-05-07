@@ -2,11 +2,9 @@ package com.hq.secondhand_book.controller;
 
 
 import com.hq.secondhand_book.service.UserService;
+import com.hq.secondhand_book.util.resp.ResultResp;
 import com.hq.secondhand_book.vo.RegisterVo;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -26,15 +24,6 @@ public class RegisterController {
     @GetMapping("/register")
     public void addUser(RegisterVo registerVo){
 
-    }
-
-    @PostMapping("/findName")
-    public String findNmae(@RequestBody String userName){
-        System.out.println(userName);
-        if(userService.isUsernameExist(userName)){
-            return "用户名已存在";
-        }
-        return "用户名可用";
     }
 
     @GetMapping("/findTel")

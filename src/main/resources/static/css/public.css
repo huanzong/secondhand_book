@@ -330,7 +330,7 @@ summary {
 }
 
 .ding ul li a:before {
-	bottom: -25px;
+	bottom: -25px !important;
 }
 
 .ding div.sList,
@@ -340,10 +340,9 @@ summary {
 
 .ding ul {
 	float: left;
-	margin-left: 18%;
+	margin-left: 18% !important;
 	line-height: 0;
 }
-
 .ding div form {
 	width: 185px;
 	height: 30px;

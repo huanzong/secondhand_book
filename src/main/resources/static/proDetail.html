@@ -2,16 +2,17 @@
 <html xmlns:v-if="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta charset="UTF-8">
-		<title>详情页</title>
+		<title>搜索</title>
+		<link rel="stylesheet" href="js/layui/css/layui.css"  media="all">
 		<link rel="stylesheet" type="text/css" href="css/public.css"/>
 		<link rel="stylesheet" type="text/css" href="css/proList.css"/>
-		<link rel="stylesheet" href="js/layui/css/layui.css"  media="all">
+		<link rel="stylesheet" type="text/css" href="css/mygxin.css" />
 		<script src="js/layui/layui.js" charset="utf-8"></script>
 		<script src="js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/jquery.SuperSlide.2.1.1.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/nav.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/pro.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/nav.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/cart.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/jquery-3.3.1.min.js	"></script>
 		<script src="js/vue.min.js"></script>
@@ -21,15 +22,15 @@
 		<div class="head">
 			<div class="wrapper clearfix">
 				<div class="clearfix" id="top">
-					<h1 class="fl"><a href="index.html"><img src="images/logo.png"/></a></h1>
+					<h1 class="fl"><a href="index.html"><img src="../images/logo.png" style="margin-top: -20px;"/></a></h1>
 					<div class="fr clearfix" id="top1">
 						<p class="fl">
-							<a href="#" id="login">登录</a>
-							<a href="#" id="reg">注册</a>
+							<a href="../login.html" id="login">登录</a>
+							<a href="../reg.html" id="reg">注册</a>
 						</p>
 						<form action="#" method="get" class="fl">
-							<input type="text" placeholder="搜索" />
-							<input type="button" style="margin-top: -30px"/>
+							<input type="text" placeholder="搜索" id="sousuo"/>
+							<a onclick="findBookByName()"><img src="images/ss.png" /></a>
 						</form>
 						<div class="btn fl clearfix">
 							<a href="myinfo/mygxin.html"><img src="images/grzx.png" /></a>
@@ -38,80 +39,78 @@
 					</div>
 				</div>
 				<ul class="clearfix" id="bott">
+					<li><a href="index.html">首页</a></li>
 					<li>
-						<a href="index.html">首页</a>
-					</li>
-					<li>
-						<a href="flowerDer.html">考试教育</a>
+						<a onclick="findByBookCategory(this)">考试教育</a>
 						<div class="sList2">
 							<div class="clearfix">
-								<a href="../flowerDer.html">公务员考试</a>
-								<a href="../flowerDer.html">英语考试</a>
-								<a href="../flowerDer.html">考研</a>
-								<a href="../flowerDer.html">其他考试</a>
-								<a href="../flowerDer.html">职称考试</a>
-								<a href="../flowerDer.html">教辅书</a>
-								<a href="../flowerDer.html">工具书</a>
+								<a onclick="findByBookCategory(this)">公务员考试</a>
+								<a onclick="findByBookCategory(this)">英语考试</a>
+								<a onclick="findByBookCategory(this)">考研</a>
+								<a onclick="findByBookCategory(this)">其他考试</a>
+								<a onclick="findByBookCategory(this)">职称考试</a>
+								<a onclick="findByBookCategory(this)">教辅书</a>
+								<a onclick="findByBookCategory(this)">工具书</a>
 							</div>
 						</div>
 					</li>
 					<li>
-						<a href="decoration.html">经济管理</a>
+						<a onclick="findByBookCategory(this)">经济管理</a>
 						<div class="sList2">
 							<div class="clearfix">
-								<a href="../flowerDer.html">成功励志</a>
-								<a href="../flowerDer.html">管理</a>
-								<a href="../flowerDer.html">经济金融</a>
+								<a onclick="findByBookCategory(this)">成功励志</a>
+								<a onclick="findByBookCategory(this)">管理</a>
+								<a onclick="findByBookCategory(this)">经济金融</a>
 							</div>
 						</div>
 					</li>
 					<li>
-						<a href="paint.html">文学艺术</a>
+						<a onclick="findByBookCategory(this)">文学艺术</a>
 						<div class="sList2">
 							<div class="clearfix">
-								<a href="../flowerDer.html">收藏鉴赏</a>
-								<a href="../flowerDer.html">艺术</a>
-								<a href="../flowerDer.html">文学小说</a>
-								<a href="../flowerDer.html">文化历史</a>
+								<a onclick="findByBookCategory(this)">收藏鉴赏</a>
+								<a onclick="findByBookCategory(this)">艺术</a>
+								<a onclick="findByBookCategory(this)">文学小说</a>
+								<a onclick="findByBookCategory(this)">文化历史</a>
 							</div>
 						</div>
 					</li>
 					<li>
-						<a href="../flowerDer.html">人文社科</a>
+						<a onclick="findByBookCategory(this)">人文社科</a>
 						<div class="sList2">
 							<div class="clearfix">
-								<a href="../flowerDer.html">新闻传播</a>
-								<a href="../flowerDer.html">心理</a>
-								<a href="../flowerDer.html">法律</a>
-								<a href="../flowerDer.html">自然科学</a>
-								<a href="../flowerDer.html">社会科学</a>
-								<a href="../flowerDer.html">政治军事</a>
-								<a href="../flowerDer.html">宗教哲学</a>
-								<a href="../flowerDer.html">语言学习</a>
+								<a onclick="findByBookCategory(this)">新闻传播</a>
+								<a onclick="findByBookCategory(this)">心理</a>
+								<a onclick="findByBookCategory(this)">法律</a>
+								<a onclick="findByBookCategory(this)">自然科学</a>
+								<a onclick="findByBookCategory(this)">社会科学</a>
+								<a onclick="findByBookCategory(this)">政治军事</a>
+								<a onclick="findByBookCategory(this)">宗教哲学</a>
+								<a onclick="findByBookCategory(this)">语言学习</a>
 							</div>
 						</div>
 					</li>
 					<li>
-						<a href="../flowerDer.html">科学技术</a>
+						<a onclick="findByBookCategory(this)">科学技术</a>
 						<div class="sList2">
 							<div class="clearfix">
-								<a href="../flowerDer.html">汽车与交通运输</a>
-								<a href="../flowerDer.html">医学卫生</a>
-								<a href="../flowerDer.html">计算机与网络</a>
-								<a href="../flowerDer.html">科技工程</a>
-								<a href="../flowerDer.html">建筑</a>
+								<a onclick="findByBookCategory(this)">汽车与交通运输</a>
+								<a onclick="findByBookCategory(this)">医学卫生</a>
+								<a onclick="findByBookCategory(this)">计算机与网络</a>
+								<a onclick="findByBookCategory(this)">科技工程</a>
+								<a onclick="findByBookCategory(this)">建筑</a>
 							</div>
 						</div>
 					</li>
 					<li>
-						<a href="../flowerDer.html">生活休闲</a>
+						<a onclick="findByBookCategory(this)">生活休闲</a>
 						<div class="sList2">
 							<div class="clearfix">
-								<a href="../flowerDer.html">生活时尚</a>
-								<a href="../flowerDer.html">家庭育儿</a>
-								<a href="../flowerDer.html">旅游地理</a>
-								<a href="../flowerDer.html">体育保健</a>
-								<a href="../flowerDer.html">少儿</a>
+								<a onclick="findByBookCategory(this)">生活时尚</a>
+								<a onclick="findByBookCategory(this)">家庭育儿</a>
+								<a onclick="findByBookCategory(this)">旅游地理</a>
+								<a onclick="findByBookCategory(this)">体育保健</a>
+								<a onclick="findByBookCategory(this)">少儿</a>
 							</div>
 						</div>
 					</li>
@@ -123,7 +122,7 @@
 			<div class="wrapper clearfix">
 				<a href="index.html">首页</a>
 				<span>/</span>
-				<a href="proDetail.html" class="on">书籍详情</a>
+				<a class="on">商品详情</a>
 			</div>
 		</div>
 		<!-----------------------Detail------------------------------>
@@ -138,9 +137,9 @@
 								<span>￥{{book.bookPrice}}</span>
 							</div>
 							<div class="btns clearfix">
-								<a href="oder.html" @click="buybook()"><p class="buy fl">立即购买</p></a>
-								<a href="#2" v-if="book.isCollection==1" @click="collection()"><p class="cart fr">取消收藏</p></a>
-								<a href="#2"  v-else><p class="cart fr" @click="cancel()">收藏</p></a>
+								<a @click="buybook()"><p class="buy fl">立即购买</p></a>
+								<a href="#2" v-if="book.isCollection==1" @click="cancel()"><p class="cart fr">取消收藏</p></a>
+								<a href="#2"  v-else><p class="cart fr" @click="collection()">收藏</p></a>
 							</div>
 						</div>
 					</div>
@@ -162,8 +161,8 @@
 								<img class="fl" :src="item.userPic" style="width: 40px;height: 40px;border-radius:50%;">
 								<div class="perR fl">
 									<p>{{item.userName}}</p>
-									<p>{{item.leaveContent}}</p>
-									<p>{{item.leaveDate}}</span></p>
+									<p>{{item.leaveContent}}<img src="http://127.0.0.1:9999/js/layui/images/face/39.gif" alt="[鼓掌]"></p>
+									<p><span>{{item.leaveDate}}</span></p>
 								</div>
 							</div>
 							<div class="btns clearfix" >
@@ -181,19 +180,19 @@
 		</div>
 		<!--返回顶部-->
 		<div class="gotop">
-			<a href="myinfo/start.html">
+			<a onclick="mystart()">
 				<dl>
 					<dt><img src="images/collection.png"/></dt>
 					<dd>我的<br />收藏</dd>
 				</dl>
 			</a>
-			<a href="myinfo/sellbook.html" class="dh">
+			<a onclick="mysell()" class="dh">
 				<dl>
 					<dt><img src="images/addbook.png"/></dt>
 					<dd>发布<br />图书</dd>
 				</dl>
 			</a>
-			<a href="myinfo/mygxin.html">
+			<a onclick="myinfo()">
 				<dl>
 					<dt><img src="images/gt3.png"/></dt>
 					<dd>个人<br />中心</dd>
@@ -205,7 +204,6 @@
 					<dd>返回<br />顶部</dd>
 				</dl>
 			</a>
-			<p>400-800-8200</p>
 		</div>
 		<!--footer-->
 		<div class="footer">
@@ -213,6 +211,43 @@
 			<p class="dibu">科院书城&copy;2019公司版权所有<br /> 本网站所列数据，除特殊说明，所有数据均为测试数据
 			</p>
 		</div>
+	<script>
+        function findBookByName() {
+            localStorage.setItem("search",$("#sousuo").val());
+            console.log(localStorage.getItem("search"));
+            window.location.href = "search.html";
+        }
+        function findByBookCategory(v) {
+            console.log($(v).text());
+            localStorage.setItem("bookCategory",$(v).text());
+            console.log(localStorage.getItem("bookCategory"));
+            window.location.href = "categorybook.html"
+        }
+		function myinfo() {
+			if (localStorage.getItem("userName") !== null) {
+				window.location.href = "myinfo/mygxin.html";
+			} else {
+				alert("您还没有登录")
+				window.location.href = "login.html";
+			}
+		}
+		function mysell() {
+			if (localStorage.getItem("userName") !== null) {
+				window.location.href = "myinfo/sellbook.html";
+			} else {
+				alert("您还没有登录")
+				window.location.href = "login.html";
+			}
+		}
+		function mystart() {
+			if (localStorage.getItem("userName") !== null) {
+				window.location.href = "myinfo/start.html";
+			} else {
+				alert("您还没有登录")
+				window.location.href = "login.html";
+			}
+		}
+	</script>
 	<script>
 		$(function () {
             console.log("详情页"+localStorage.getItem("bookId"))
@@ -247,39 +282,85 @@
             },
             methods: {
                 collection:function () {
-                    console.log(localStorage.getItem("bookId"))
-                    console.log(localStorage.getItem("userName"))
+                    $.ajax({
+                        url:"start",
+                        type:"get",
+                        async: false,//使用同步的方式,true为异步方式
+                        data:{
+                            userName:localStorage.getItem("userName")
+                            ,bookId:localStorage.getItem("bookId")
+                        },
+                        success:function(data){
+                            if(data.msg=="ok"){
+                                window.location.reload();
+                            }else{
+                                alert(data.msg)
+                            }
+                        },
+                        fail:function(){
+                            alert(error);
+                        }
+                    })
                 },
                 cancel:function () {
-                    console.log(localStorage.getItem("bookId"))
-                    console.log(localStorage.getItem("userName"))
+                    $.ajax({
+                        url:"cancelstart",
+                        type:"delete",
+                        async: false,//使用同步的方式,true为异步方式
+                        data:{
+                            userName:localStorage.getItem("userName")
+                            ,bookId:localStorage.getItem("bookId")
+                        },
+                        success:function(data){
+                            if(data.msg=="ok"){
+                                window.location.reload();
+							}else{
+                                alert(data.msg)
+							}
+                        },
+                        fail:function(){
+                            alert(error);
+                        }
+                    })
                 },
                 buybook:function () {
-                    console.log(localStorage.getItem("bookId"))
-                    console.log(localStorage.getItem("userName"))
+                    if(localStorage.getItem("userName")!==""&&localStorage.getItem("userName")!==null){
+                        console.log(localStorage.getItem("bookId"))
+                        console.log(localStorage.getItem("userName"))
+						location.href="oder.html"
+                    }else {
+                        window.location.href = "login.html";
+					}
                 },
             }
 		});
         var index;
         function leaveWords() {
-            layui.use('layedit', function(){
-                var layedit = layui.layedit;
-                index = layedit.build('demo',{
-                    height: 230 //设置编辑器高度
-				}); //建立编辑器
-            });
-            $('#liuyan').show();
-            $('#say').css('display','block');
+            if(localStorage.getItem("userName")!==""&&localStorage.getItem("userName")!==null){
+                layui.use('layedit', function(){
+                    var layedit = layui.layedit,
+                        form = layui.form,
+                        layer = layui.layer,
+                        $ = layui.jquery;
+                    index = layedit.build('demo',{
+                        height: 230 //设置编辑器高度
+                    }); //建立编辑器
+                });
+                $('#liuyan').show();
+                $('#say').css('display','block');
+			}else{
+                window.location.href = "login.html";
+			}
         }
 
         function say(){
             layui.use('layedit', function(){
                 var layedit = layui.layedit;
-                console.log(layedit.getText(index));
+                console.log(layedit.getContent(index));
                 var leaveWordDto={
 					bookId:localStorage.getItem("bookId"),
-					userName:"张三",//localStorage.getItem("userName")
-					leaveContent:layedit.getText(index)
+					userName:localStorage.getItem("userName"),
+					leaveContent:layedit.getContent(index)
                 };
                 $.ajax({
                     url:"/addleaveword",

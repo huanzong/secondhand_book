@@ -4,15 +4,11 @@ import com.hq.secondhand_book.service.FileService;
 import com.hq.secondhand_book.service.UserService;
 import com.hq.secondhand_book.util.resp.Response;
 import com.hq.secondhand_book.util.resp.ResultResp;
-import com.hq.secondhand_book.vo.UserInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.util.List;
 
 
 /**

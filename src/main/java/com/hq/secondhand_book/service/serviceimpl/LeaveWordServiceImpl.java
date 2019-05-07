@@ -11,8 +11,14 @@ import com.hq.secondhand_book.service.LeaveWordService;
 import com.hq.secondhand_book.util.Constant;
 import com.hq.secondhand_book.util.resp.Response;
 import com.hq.secondhand_book.util.resp.ResultResp;
-import com.hq.secondhand_book.vo.LeaveWordVo;
+import com.hq.secondhand_book.vo.leaveword.LeaveWordListVo;
+import com.hq.secondhand_book.vo.leaveword.LeaveWordPageVo;
+import com.hq.secondhand_book.vo.leaveword.LeaveWordVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -83,5 +89,89 @@ public class LeaveWordServiceImpl implements LeaveWordService {
             }
         }
         return Response.ok(leaveWordVoList);
+    }
+
+    /**
+     * 留言管理列表
+     * @param page
+     * @param size
+     * @return
+     */
+    @Override
+    public ResultResp leaveWordList(int page, int size) {
+        List<LeaveWordListVo> resultList=new ArrayList<>();
+        LeaveWordPageVo leaveWordPageVo=new LeaveWordPageVo();
+        if(page<1){
+            return Response.dataErr("页码数不能小于1");
+        }
+        Pageable pageable = PageRequest.of(page-1,size, Sort.Direction.DESC,"cstModify");
+        Page<LeaveWord> pager = leaveWordRepository.findAllByUsable(Constant.USABLE, pageable);
+        List<LeaveWord> leaveWords = leaveWordRepository.findAllByUsable(Constant.USABLE);
+        List<LeaveWord> list=pager.getContent();
+        if (!list.isEmpty()){
+            for(LeaveWord word:list){
+                LeaveWordListVo listVo=new LeaveWordListVo();
+                listVo.setLeaveId(word.getId());
+                listVo.setLeaveContent(word.getLeaveContent());
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+                listVo.setLeaveDate(sdf.format(word.getCstModify()));
+                User user = userRepositiry.findByIdAndUsable(word.getUserId(),Constant.USABLE);
+                if(user!=null){
+                    listVo.setUserName(user.getUserName());
+                }else {
+                    listVo.setUserName("用户已失效");
+                }
+                resultList.add(listVo);
+            }
+        }/*else {
+            return Response.dataErr("找不到资源");
+        }*/
+        leaveWordPageVo.setList(resultList);
+        leaveWordPageVo.setRowCount(leaveWords.size());
+        return Response.ok(leaveWordPageVo);
+    }
+
+    @Override
+    public ResultResp findLeaveWordList(String leaveWord, int page, int size) {
+        List<LeaveWordListVo> resultList=new ArrayList<>();
+        LeaveWordPageVo leaveWordPageVo=new LeaveWordPageVo();
+        if(page<1){
+            return Response.dataErr("页码数不能小于1");
+        }
+        Pageable pageable = PageRequest.of(page-1,size, Sort.Direction.DESC,"cstModify");
+        Page<LeaveWord> pager = leaveWordRepository.findByLeaveContentContainingAndUsable(leaveWord,Constant.USABLE, pageable);
+        List<LeaveWord> leaveWords = leaveWordRepository.findByLeaveContentContainingAndUsable(leaveWord, Constant.USABLE);
+        List<LeaveWord> list=pager.getContent();
+        if (!list.isEmpty()){
+            for(LeaveWord word:list){
+                LeaveWordListVo listVo=new LeaveWordListVo();
+                listVo.setLeaveId(word.getId());
+                listVo.setLeaveContent(word.getLeaveContent());
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+                listVo.setLeaveDate(sdf.format(word.getCstModify()));
+                User user = userRepositiry.findByIdAndUsable(word.getUserId(),Constant.USABLE);
+                if(user!=null){
+                    listVo.setUserName(user.getUserName());
+                }else {
+                    listVo.setUserName("用户已失效");
+                }
+                resultList.add(listVo);
+            }
+        }else {
+            return Response.dataErr("找不到资源");
+        }
+        leaveWordPageVo.setList(resultList);
+        leaveWordPageVo.setRowCount(leaveWords.size());
+        return Response.ok(leaveWordPageVo);
+    }
+
+    @Override
+    public ResultResp deleteLeaveWord(int leaveId) {
+        LeaveWord leaveWord = leaveWordRepository.getById(leaveId);
+        if(leaveWord != null){
+            leaveWord.setUsable(Constant.UN_USABLE);
+            leaveWordRepository.saveAndFlush(leaveWord);
+        }
+        return Response.ok();
     }
 }

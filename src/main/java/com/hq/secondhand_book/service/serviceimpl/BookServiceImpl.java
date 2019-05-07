@@ -6,10 +6,8 @@ import com.hq.secondhand_book.service.BookService;
 import com.hq.secondhand_book.util.Constant;
 import com.hq.secondhand_book.util.resp.Response;
 import com.hq.secondhand_book.util.resp.ResultResp;
-import com.hq.secondhand_book.vo.BookDetails;
-import com.hq.secondhand_book.vo.BookListPageVo;
-import com.hq.secondhand_book.vo.BookListVo;
-import com.hq.secondhand_book.vo.LeaveWordVo;
+import com.hq.secondhand_book.vo.book.*;
+import com.hq.secondhand_book.vo.leaveword.LeaveWordVo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -40,7 +38,6 @@ public class BookServiceImpl implements BookService {
      */
     @Override
     public ResultResp bookList(int page, int size) {
-        System.out.println("page:"+page+"size:"+size);
         List<BookListVo> resultList=new ArrayList<>();
         List<Integer> statuses=new ArrayList<Integer>();
         BookListPageVo bookListPageVo=new BookListPageVo();
@@ -69,19 +66,65 @@ public class BookServiceImpl implements BookService {
     }
 
     /**
-     * 分类查询图书
+     * 图书后台列表
+     * @param page
+     * @param size
+     * @return
      */
     @Override
-    public ResultResp bookListByCategory(int page, String category) {
-        List<BookListVo> bookListVos=new ArrayList<>();
+    public ResultResp bookAdminList(int page, int size) {
+        List<BookAdminListVo> resultList=new ArrayList<>();
+        List<Integer> statuses=new ArrayList<Integer>();
+        BookAdminListPageVo adminListPageVo=new BookAdminListPageVo();
         if(page<1){
             return Response.dataErr("页码数不能小于1");
         }
-        Pageable pageable = PageRequest.of(page-1,4, Sort.Direction.DESC,"cstModify");
+        Pageable pageable = PageRequest.of(page-1,size, Sort.Direction.DESC,"cstModify");
+        Page<Book> pager = bookRepository.findAll(pageable);
+        List<Book> books = bookRepository.findAll();
+        List<Book> list=pager.getContent();
+        if (!list.isEmpty()){
+            for(Book book:list){
+                BookAdminListVo adminListVo=new BookAdminListVo();
+                adminListVo.setBookName(book.getBookName());
+                String pic = "../picture/book/"+ book.getBookPicture().split("#")[0];
+                adminListVo.setBookPicture(pic);
+                DecimalFormat df = new DecimalFormat("#.00");
+                adminListVo.setBookPrice(df.format(book.getBookPrice()));
+                adminListVo.setBookId(book.getId());
+                User user = userRepositiry.getById(book.getUserId());
+                if(user!=null){
+                    adminListVo.setUserName(user.getUserName());
+                }
+                if(book.getUsable()==Constant.USABLE){
+                    adminListVo.setBookStatus("正常");
+                }else {
+                    adminListVo.setBookStatus("下架");
+                }
+                resultList.add(adminListVo);
+            }
+        }
+        adminListPageVo.setList(resultList);
+        adminListPageVo.setRowCount(books.size());
+        return Response.ok(adminListPageVo);
+    }
+
+    /**
+     * 分类查询图书列表
+     */
+    @Override
+    public ResultResp bookListByCategory(String category,int pageIndex,int pageSize) {
+        List<BookListVo> resultList=new ArrayList<>();
+        List<Integer> statuses=new ArrayList<Integer>();
+        BookListPageVo bookListPageVo=new BookListPageVo();
+        if(pageIndex<1){
+            return Response.dataErr("页码数不能小于1");
+        }
+        Pageable pageable = PageRequest.of(pageIndex-1,pageSize, Sort.Direction.DESC,"cstModify");
         BookCategory bookCategory = bookCategoryRepository.getByBookCategoryName(category);
         if(bookCategory!=null){
             int bookCategoryId = bookCategory.getId();
-            Page<Book> pager = bookRepository.findByBookCategoryIdAndUsable(bookCategoryId,1, pageable);
+            Page<Book> pager = bookRepository.findByBookCategoryIdAndUsable(bookCategoryId,Constant.USABLE, pageable);
             List<Book> list=pager.getContent();
             if(!list.isEmpty()){
                 for(Book book:list){
@@ -92,10 +135,12 @@ public class BookServiceImpl implements BookService {
                     DecimalFormat df = new DecimalFormat("#.00");
                     bookListVo.setBookPrice(df.format(book.getBookPrice()));
                     bookListVo.setBookId(book.getId());
-                    bookListVos.add(bookListVo);
+                    resultList.add(bookListVo);
                 }
             }
-            return  Response.ok(bookListVos);
+            bookListPageVo.setList(resultList);
+            bookListPageVo.setRowCount(list.size());
+            return Response.ok(bookListPageVo);
         }
         return Response.dataErr("找不到资源");
     }
@@ -145,12 +190,12 @@ public class BookServiceImpl implements BookService {
             }
             bookDetails.setLeaveWordList(leaveWordVoList);
             //判断已登录用户是否已收藏该图书
-            int isCollection = 0;
+            int isCollection = Constant.CANCELSTART;
             if(!userName.isEmpty()){
                 User user = userRepositiry.findByUserName(userName);
                 Collection collection = collectionRepository.getByBookIdAndUserIdAndUsable(bookId,user.getId(),Constant.USABLE);
                 if(collection!=null){
-                    isCollection = 1;
+                    isCollection = Constant.START;
                 }
             }
             bookDetails.setIsCollection(isCollection);
@@ -176,5 +221,97 @@ public class BookServiceImpl implements BookService {
         }
         return Response.dataErr("图书已失效");
 
+    }
+
+    @Override
+    public ResultResp getBookList(int page, int size) {
+        return null;
+    }
+
+    @Override
+    public ResultResp deleteBook(int bookId) {
+        Book book = bookRepository.getById(bookId);
+        if(book != null){
+            book.setUsable(Constant.UN_USABLE);
+            bookRepository.saveAndFlush(book);
+        }
+        return Response.ok();
+    }
+
+    @Override
+    public ResultResp addBook(int bookId) {
+        Book book = bookRepository.getById(bookId);
+        if(book != null){
+            book.setUsable(Constant.USABLE);
+            bookRepository.saveAndFlush(book);
+        }
+        return Response.ok();
+    }
+
+    @Override
+    public ResultResp findByBookNameList(String bookName, int page, int size) {
+        List<BookListVo> resultList=new ArrayList<>();
+        List<Integer> statuses=new ArrayList<Integer>();
+        BookListPageVo bookListPageVo=new BookListPageVo();
+        if(page<1){
+            return Response.dataErr("页码数不能小于1");
+        }
+        Pageable pageable = PageRequest.of(page-1,size, Sort.Direction.DESC,"cstModify");
+        Page<Book> pager = bookRepository.findByBookNameContainingAndUsable(bookName,Constant.USABLE, pageable);
+        List<Book> books = bookRepository.findByBookNameContainingAndUsable(bookName,Constant.USABLE);
+        List<Book> list=pager.getContent();
+        if (!list.isEmpty()){
+            for(Book book:list){
+                BookListVo bookListVo=new BookListVo();
+                bookListVo.setBookName(book.getBookName());
+                String pic = "picture/book/"+ book.getBookPicture().split("#")[0];
+                bookListVo.setBookPicture(pic);
+                DecimalFormat df = new DecimalFormat("#.00");
+                bookListVo.setBookPrice(df.format(book.getBookPrice()));
+                bookListVo.setBookId(book.getId());
+                resultList.add(bookListVo);
+            }
+        }
+        bookListPageVo.setList(resultList);
+        bookListPageVo.setRowCount(books.size());
+        return Response.ok(bookListPageVo);
+    }
+
+    @Override
+    public ResultResp findByBookNameAdminList(String bookName, int page, int size) {
+        List<BookAdminListVo> resultList=new ArrayList<>();
+        List<Integer> statuses=new ArrayList<Integer>();
+        BookAdminListPageVo adminListPageVo=new BookAdminListPageVo();
+        if(page<1){
+            return Response.dataErr("页码数不能小于1");
+        }
+        Pageable pageable = PageRequest.of(page-1,size, Sort.Direction.DESC,"cstModify");
+        Page<Book> pager = bookRepository.findByBookNameContaining(bookName, pageable);
+        List<Book> books = bookRepository.findByBookNameContaining(bookName);
+        List<Book> list=pager.getContent();
+        if (!list.isEmpty()){
+            for(Book book:list){
+                BookAdminListVo adminListVo=new BookAdminListVo();
+                adminListVo.setBookName(book.getBookName());
+                String pic = "../picture/book/"+ book.getBookPicture().split("#")[0];
+                adminListVo.setBookPicture(pic);
+                DecimalFormat df = new DecimalFormat("#.00");
+                adminListVo.setBookPrice(df.format(book.getBookPrice()));
+                adminListVo.setBookId(book.getId());
+                User user = userRepositiry.getById(book.getUserId());
+                if(user!=null){
+                    adminListVo.setUserName(user.getUserName());
+                }
+                if(book.getUsable()==Constant.USABLE){
+                    adminListVo.setBookStatus("正常");
+                }else {
+                    adminListVo.setBookStatus("下架");
+                }
+                resultList.add(adminListVo);
+            }
+        }
+        adminListPageVo.setList(resultList);
+        adminListPageVo.setRowCount(books.size());
+        return Response.ok(adminListPageVo);
     }
 }

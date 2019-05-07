@@ -19,7 +19,7 @@ public class User {
     @Column(name = "user_real_name")
     private String userRelName;   //用户真实姓名
 
-    @Column(name = "user_stuId")
+    @Column(name = "user_student_id")
     private String userStuId;   //用户学号
 
     @Column(name = "user_sex")
@@ -51,7 +51,4 @@ public class User {
 
     @Column(name = "cst_modify")
     private Date cstModify;   //数据的修改时间
-
-    @Column(name = "cst_dodify")
-    private Date cstDodify;   //数据的修改时间
 }
